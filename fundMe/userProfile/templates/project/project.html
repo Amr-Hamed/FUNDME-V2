@@ -11,6 +11,11 @@
         end_date: {{project.end_date}} <br>
         total_target: {{project.total_target}} <br>
         <!-- Description : {{project.details}}-->
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ report_form.as_p }}
+            <input type="submit" name="" value="Report Project">
+        </form>
     </div>
 
     <div class="jumbotron">

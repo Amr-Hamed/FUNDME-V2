@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, ProjectDonations, ProjectComments
+from .models import UserProfile, ProjectDonations, ProjectComments, ProjectReports
 from django.contrib.auth.models import User
 
 from .models import Project, ProjectPics, ProjectTags
@@ -60,3 +60,11 @@ class AddCommentForm(forms.ModelForm):
     class Meta:
         model = ProjectComments
         fields = ('comment_body',)
+
+
+class ReportProjectForm(forms.ModelForm):
+    report_body = forms.CharField(required=True)
+
+    class Meta:
+        model = ProjectReports
+        fields = ('report_body',)

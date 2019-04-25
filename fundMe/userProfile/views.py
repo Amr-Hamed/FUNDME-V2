@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
-from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm
+from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -169,6 +169,20 @@ def show_a_project(request, id):
     project = get_object_or_404(Project, pk=id)
     donation_form = MakeDonationForm(data=request.POST)
     comment_form = AddCommentForm(data=request.POST)
+    report_form = ReportProjectForm(data=request.POST)
+    # print(report_form)
+    if report_form.is_valid():
+        report = report_form.save(commit=False)
+        project = Project.objects.get(id=id)
+        current_user = User.objects.get(id=request.user.id)
+        current_user_profile = UserProfile.objects.filter(user=current_user)
+        report.project = project
+        report.user = current_user_profile.first()
+        report.save()
+        report_form = ReportProjectForm()
+        print(report_form)
+    else:
+        print(report_form.errors)
     if donation_form.is_valid():
         donation = donation_form.save(commit=False)
         project = Project.objects.get(id=id)
@@ -177,6 +191,7 @@ def show_a_project(request, id):
         donation.project = project
         donation.user = current_user_profile.first()
         donation.save()
+        donation_form = MakeDonationForm()
     # print(request.user)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
@@ -186,11 +201,13 @@ def show_a_project(request, id):
         comment.project = project
         comment.user = current_user_profile.first()
         comment.save()
+        comment_form= AddCommentForm()
     comments = ProjectComments.objects.filter(project= project)
-    print(comments)
+    # print(comments)
     return render(request, 'project/project.html', {
         'project': project,
         'donation_form': donation_form,
         'comment_form': comment_form,
+        'report_form': report_form,
         'comments': comments
     })
