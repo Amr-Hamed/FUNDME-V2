@@ -59,4 +59,4 @@ class AddCommentForm(forms.ModelForm):
 
     class Meta:
         model = ProjectComments
-        fields = ('comment_reports',)
+        fields = ('comment_body',)

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
-from .forms import UserForm, UserProfileInfoForm, MakeDonationForm
+from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -13,7 +13,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile, ProjectPics, Project
+from .models import UserProfile, ProjectPics, Project, ProjectComments
 
 
 def index(request):
@@ -168,6 +168,7 @@ def show_projects(request):
 def show_a_project(request, id):
     project = get_object_or_404(Project, pk=id)
     donation_form = MakeDonationForm(data=request.POST)
+    comment_form = AddCommentForm(data=request.POST)
     if donation_form.is_valid():
         donation = donation_form.save(commit=False)
         project = Project.objects.get(id=id)
@@ -177,7 +178,19 @@ def show_a_project(request, id):
         donation.user = current_user_profile.first()
         donation.save()
     # print(request.user)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        project = Project.objects.get(id=id)
+        current_user = User.objects.get(id=request.user.id)
+        current_user_profile = UserProfile.objects.filter(user=current_user)
+        comment.project = project
+        comment.user = current_user_profile.first()
+        comment.save()
+    comments = ProjectComments.objects.filter(project= project)
+    print(comments)
     return render(request, 'project/project.html', {
         'project': project,
-        'donation_form': donation_form
+        'donation_form': donation_form,
+        'comment_form': comment_form,
+        'comments': comments
     })

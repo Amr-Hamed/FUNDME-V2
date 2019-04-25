@@ -22,9 +22,13 @@
     </div>
 
     <div class="jumbotron">
+        {% for comment in comments %}
+        <p>{{comment.user}} : {{comment.comment_body}}</p>
+        <!--add report to comment-->
+        {% endfor %}
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
-            {{ donation_form.as_p }}
+            {{ comment_form.as_p }}
             <input type="submit" name="" value="Submit donation">
         </form>
     </div>
