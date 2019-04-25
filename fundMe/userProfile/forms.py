@@ -15,3 +15,7 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfile
         fields = ('portfolio_site', 'profile_pic')
+
+def clean_email(self):
+    data = self.cleaned_data['email']
+    return data.lower()

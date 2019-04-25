@@ -4,7 +4,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
+from userProfile.tokens import account_activation_token
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.core.exceptions import ObjectDoesNotExist
+from .models import UserProfile
 
 def index(request):
     return render(request, 'userProfile/index.html')
@@ -27,7 +34,7 @@ def register(request):
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
+            user = user_form.save(commit=False)
             user.set_password(user.password)
             user.save()
             profile = profile_form.save(commit=False)
@@ -36,7 +43,23 @@ def register(request):
                 print('found it')
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            registered = True
+            user.is_active = False
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your account.'
+            message = render_to_string('userProfile/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = user_form.cleaned_data.get('email')
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+      #      registered = True
+            return HttpResponse('Please confirm your email address to complete the registration')
+
         else:
             print(user_form.errors, profile_form.errors)
     else:
@@ -65,3 +88,18 @@ def user_login(request):
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'userProfile/login.html', {})
+
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = UserProfile.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, UserProfile.DoesNotExist):
+        user = None
+    if  account_activation_token.check_token(user, token):
+        user.is_active = True
+        #return HttpResponseRedirect(reverse('index'))
+        return HttpResponse('Activation link is invalid!')
+    else:
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')

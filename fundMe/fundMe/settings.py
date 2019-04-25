@@ -117,6 +117,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = MEDIA_DIR
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'fundmewebsite@gmail.com'
+EMAIL_HOST_PASSWORD ='12345678fundme'
+EMAIL_PORT = 587
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/userProfile/user_login/'
