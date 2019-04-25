@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
 from .forms import UserForm, UserProfileInfoForm
@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile, ProjectPics
+from .models import UserProfile, ProjectPics, Project
 
 
 def index(request):
@@ -148,3 +148,16 @@ def create_project(request):
         'project_tags_form': project_tags_form,
         'errors': None
     })
+
+# Show all projects
+@login_required
+def show_projects(request):
+    projects = Project.objects.all
+    return render(request, 'project/index.html', {'projects': projects})
+
+
+# show a single project
+@login_required
+def show_a_project(request, id):
+    project = get_object_or_404(Project, pk=id)
+    return render(request, 'project/project.html',{'project': project})

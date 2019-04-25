@@ -1,5 +1,5 @@
 from django.urls import path
-from userProfile import views
+from . import views
 
 # SET THE NAMESPACE!
 app_name = 'userProfile'
@@ -10,4 +10,4 @@ urlpatterns = [
     path('user_login/', views.user_login, name='user_login'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('create_project/', views.create_project, name='create_project')
-]
+    ]

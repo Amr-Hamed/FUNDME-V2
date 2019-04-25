@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     phone = models.BigIntegerField(default='01000000000', null=True)
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default='profile_pics/avatar.png', null=True)
     birthday = models.DateField(default=timezone.now, null=True)
-    portfolio_site = models.URLField(default='www.facebook.com', null=True, blank=True)
+    portfolio_site = models.URLField(default='http://www.facebook.com', null=True, blank=True)
     country = models.CharField(default='Egypt', null=True, max_length=20)
 
     def __str__(self):
@@ -25,12 +25,12 @@ class Categories(models.Model):
 
 
 class Project(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=50, default='Project Title', unique=True)
+    details = models.CharField(max_length=300)
     start_date = models.DateField(default=timezone.now, null=True)
     end_date = models.DateField(default=timezone.now, null=True)
-    total_rating = models.IntegerField(default=0, null=True)
     total_target = models.BigIntegerField(default=0, null=True)
 
     def __str__(self):

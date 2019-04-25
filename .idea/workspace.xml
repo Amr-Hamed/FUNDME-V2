@@ -2,66 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02b6eac0-6342-4752-92c9-025aa0c51b95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/fundMe/media/images/Screenshot_from_2019-04-01_17-53-04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundMe/media/images/Screenshot_from_2019-04-11_19-32-57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundMe/media/profile_pics/noimage.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundMe/userProfile/migrations/0002_auto_20190425_1423.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundMe/userProfile/migrations/0003_auto_20190425_1547.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundMe/userProfile/templates/project/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/bin/python" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/bin/python3.4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/include/python3.4m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/__future__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/_bootlocale.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/_collections_abc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/_dummy_thread.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/_weakrefset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/abc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/base64.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/bisect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/codecs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/collections" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/config-3.4m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/copy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/copyreg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/encodings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/fnmatch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/functools.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/genericpath.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/hashlib.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/heapq.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/hmac.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/imp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/importlib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/io.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/keyword.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/lib-dynload" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/linecache.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/locale.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/ntpath.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/os.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/plat-linux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/posixpath.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/random.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/re.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/reprlib.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/rlcompleter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/shutil.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/sre_compile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/sre_constants.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/sre_parse.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/stat.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/struct.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/tarfile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/tempfile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/token.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/tokenize.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/types.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/warnings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/weakref.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib64" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/.idea/fundMe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/.idea/fundMe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundMe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundMe/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/fundMe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/fundMe/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundMe/userProfile/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/create_project.html" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/create_project.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundMe/userProfile/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundMe/userProfile/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/views.py" afterDir="false" />
     </list>
@@ -73,16 +29,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-37">
-              <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+            <state relative-caret-position="357">
+              <caret line="161" column="37" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#0#54#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fundMe/userProfile/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fundMe/userProfile/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -145,12 +127,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fundMe/userProfile/urls.py" />
         <option value="$PROJECT_DIR$/fundMe/fundMe/urls.py" />
-        <option value="$PROJECT_DIR$/fundMe/userProfile/admin.py" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/forms.py" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/create_project.html" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/views.py" />
+        <option value="$PROJECT_DIR$/fundMe/userProfile/admin.py" />
+        <option value="$PROJECT_DIR$/fundMe/userProfile/urls.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -202,6 +185,36 @@
               <item name="fundMe" type="462c0819:PsiDirectoryNode" />
               <item name="userProfile" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="FUNDME-V2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FUNDME-V2" type="462c0819:PsiDirectoryNode" />
+              <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FUNDME-V2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FUNDME-V2" type="462c0819:PsiDirectoryNode" />
+              <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FUNDME-V2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FUNDME-V2" type="462c0819:PsiDirectoryNode" />
+              <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FUNDME-V2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FUNDME-V2" type="462c0819:PsiDirectoryNode" />
+              <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -242,8 +255,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1018" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19620253" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19620253" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -254,7 +268,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3295325" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4994726" visible="true" weight="0.32839224" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994726" visible="true" weight="0.32839224" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052744" side_tool="true" weight="0.32839224" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -301,26 +315,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/index.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/registeration.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -371,13 +365,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-37">
-          <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+        <state relative-caret-position="357">
+          <caret line="161" column="37" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/db.sqlite3">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

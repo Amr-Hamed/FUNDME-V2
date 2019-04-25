@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ef69a78-13af-4c86-8ef6-58130e04cee0" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/../djangoenv/bin/python" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangoenv/bin/python3.4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangoenv/include/python3.4m" beforeDir="false" />
@@ -55,6 +56,14 @@
       <change beforePath="$PROJECT_DIR$/../djangoenv/lib/python3.4/warnings.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangoenv/lib/python3.4/weakref.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangoenv/lib64" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/fundMe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fundMe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userProfile/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userProfile/models.py" afterDir="false" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
       <change beforePath="$PROJECT_DIR$/userProfile/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userProfile/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,15 +77,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userProfile/models.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-391">
               <caret line="18" selection-start-line="18" selection-end-line="18" />
+=======
+            <state relative-caret-position="81">
+              <caret line="31" column="66" lean-forward="true" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#174#707#0" />
+                <element signature="e#746#865#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userProfile/urls.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,16 +101,25 @@
               <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fundMe/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="e#630#662#0" expanded="true" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/userProfile/templates/userProfile/login.html">
+        <entry file="file://$PROJECT_DIR$/../../../lab1/djangoEnv/lib/python3.7/site-packages/django/urls/conf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="60">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -101,16 +127,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userProfile/views.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="195">
               <caret line="13" selection-start-line="13" selection-end-line="13" />
+=======
+            <state relative-caret-position="194">
+              <caret line="121" column="15" selection-start-line="121" selection-start-column="15" selection-end-line="121" selection-end-column="15" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#777#819#0" />
+                <element signature="e#868#933#0" />
+                <element signature="e#963#2695#0" />
+                <element signature="e#2727#3440#0" />
+                <element signature="e#3485#4003#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/userProfile/templates/project/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="81" lean-forward="true" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/fundMe/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
@@ -118,6 +164,12 @@
               <folding>
                 <element signature="e#630#662#0" expanded="true" />
               </folding>
+=======
+        <entry file="file://$PROJECT_DIR$/userProfile/templates/project/project.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
             </state>
           </provider>
         </entry>
@@ -127,8 +179,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -152,24 +204,38 @@
       <list>
         <option value="$PROJECT_DIR$/fundMe/settings.py" />
         <option value="$PROJECT_DIR$/userProfile/forms.py" />
-        <option value="$PROJECT_DIR$/userProfile/admin.py" />
         <option value="$PROJECT_DIR$/userProfile/templates/userProfile/base.html" />
         <option value="$PROJECT_DIR$/userProfile/templates/userProfile/index.html" />
         <option value="$PROJECT_DIR$/userProfile/templates/userProfile/register.html" />
-        <option value="$PROJECT_DIR$/fundMe/urls.py" />
         <option value="$PROJECT_DIR$/userProfile/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/userProfile/templates/userProfile/login.html" />
         <option value="$PROJECT_DIR$/userProfile/labpull.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/userProfile/models.py" />
         <option value="$PROJECT_DIR$/userProfile/views.py" />
         <option value="$PROJECT_DIR$/userProfile/urls.py" />
+=======
+        <option value="$PROJECT_DIR$/userProfile/admin.py" />
+        <option value="$PROJECT_DIR$/userProfile/urls.py" />
+        <option value="$PROJECT_DIR$/userProfile/views.py" />
+        <option value="$PROJECT_DIR$/fundMe/urls.py" />
+        <option value="$PROJECT_DIR$/userProfile/models.py" />
+        <option value="$PROJECT_DIR$/userProfile/templates/project/project.html" />
+        <option value="$PROJECT_DIR$/userProfile/templates/project/index.html" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
     <option name="x" value="20" />
     <option name="y" value="28" />
     <option name="width" value="1346" />
+=======
+    <option name="x" value="10" />
+    <option name="y" value="48" />
+    <option name="width" value="1343" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
     <option name="height" value="666" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -189,7 +255,24 @@
             <path>
               <item name="fundMe" type="b2602c69:ProjectViewProjectNode" />
               <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fundMe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fundMe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fundMe" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
             </path>
           </expand>
           <select />
@@ -199,6 +282,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/manage.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -268,7 +352,7 @@
     <frame x="0" y="28" width="1366" height="706" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962743" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962743" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -279,7 +363,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32920355" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32920355" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32920355" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -292,15 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="121" column="25" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userProfile/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#1#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -336,42 +411,109 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/userProfile/migrations/0001_initial.py">
+<<<<<<< HEAD
+=======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userProfile/templates/userProfile/login.html">
+    <entry file="file://$PROJECT_DIR$/media/profile_pics/edu_what_is_earth_0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/profile_pics/edu_what_is_earth_0_QBy2cAy.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userProfile/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="105">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/userProfile/labpull.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/userProfile/views.py">
+    <entry file="file://$PROJECT_DIR$/userProfile/urls.py">
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userProfile/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/userProfile/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="121" column="15" selection-start-line="121" selection-start-column="15" selection-end-line="121" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#777#819#0" />
+            <element signature="e#868#933#0" />
+            <element signature="e#963#2695#0" />
+            <element signature="e#2727#3440#0" />
+            <element signature="e#3485#4003#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
+    <entry file="file://$PROJECT_DIR$/userProfile/templates/userProfile/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../lab1/djangoEnv/lib/python3.7/site-packages/django/urls/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+=======
+        <state relative-caret-position="140">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
+          <folding>
+            <element signature="e#630#662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userProfile/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="-391">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+=======
+        <state relative-caret-position="81">
+          <caret line="31" column="66" lean-forward="true" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#174#707#0" />
+            <element signature="e#746#865#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/media/profile_pics/edu_what_is_earth_0.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -395,6 +537,19 @@
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/userProfile/templates/project/project.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userProfile/templates/project/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="81" lean-forward="true" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
+>>>>>>> 6a620127be32d479619da40c512d4370795f9460
         </state>
       </provider>
     </entry>
