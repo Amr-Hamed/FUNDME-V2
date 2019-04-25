@@ -11,5 +11,4 @@ admin.site.register(ProjectPics)
 admin.site.register(ProjectReports)
 admin.site.register(ProjectDonations)
 admin.site.register(ProjectComments)
-admin.site.register(ProjectDonations)
 

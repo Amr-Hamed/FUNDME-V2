@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
-from .forms import UserForm, UserProfileInfoForm
+from .forms import UserForm, UserProfileInfoForm, MakeDonationForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -115,6 +116,11 @@ def create_project(request):
         project_tags_form = ProjectTagsForm(data=request.POST)
         if project_form.is_valid() and project_pics_form.is_valid() and project_tags_form.is_valid():
             project = project_form.save(commit=False)
+            current_user = User.objects.get(id= request.user.id)
+            # print(type(current_user))
+            current_user_profile = UserProfile.objects.filter(user=current_user)
+            # print(type(current_user_profile.first()))
+            project.user = current_user_profile.first()
             project.save()
             if 'project_pictures' in request.FILES and request.FILES['project_pictures'] is not None:
                 print(request.FILES.getlist('project_pictures')[0])
@@ -149,6 +155,7 @@ def create_project(request):
         'errors': None
     })
 
+
 # Show all projects
 @login_required
 def show_projects(request):
@@ -160,4 +167,10 @@ def show_projects(request):
 @login_required
 def show_a_project(request, id):
     project = get_object_or_404(Project, pk=id)
-    return render(request, 'project/project.html',{'project': project})
+    donation_form = MakeDonationForm(data=request.POST)
+    if donation_form.is_valid():
+        donation = donation_form.save(commit=False)
+        # donation.project
+        # user.save()
+    # print(request.user)
+    return render(request, 'project/project.html', {'project': project})

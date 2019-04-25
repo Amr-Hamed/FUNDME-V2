@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{project.title}}</title>
-</head>
-<body>
-<h1> {{project.title}} </h1> <br>
- Category : {{project.category}} <br>
- Owner: {{ project.user }} <br>
- start_date: {{project.start_date}} <br>
- end_date: {{project.end_date}} <br>
- total_target: {{project.total_target}} <br>
- Description : {{project.details}}
+{% extends "userProfile/base.html" %}
+{% load staticfiles %}
 
-</body>
-</html>
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+        <h1> {{project.title}} </h1> <br>
+        Category : {{project.category}} <br>
+        Owner: {{ project.user }} <br>
+        start_date: {{project.start_date}} <br>
+        end_date: {{project.end_date}} <br>
+        total_target: {{project.total_target}} <br>
+        <!-- Description : {{project.details}}-->
+
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+<!--            {{ project_tags_form.as_p }}-->
+            <input type="submit" name="" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}
