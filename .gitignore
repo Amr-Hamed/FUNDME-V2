@@ -5,3 +5,5 @@ fundMe/userProfile/__pycache__/*
 fundMe/db.sqlite3
 
 .idea/*
+
+fundMe/media/*
