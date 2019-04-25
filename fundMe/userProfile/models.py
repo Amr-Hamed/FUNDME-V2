@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     phone = models.BigIntegerField(default='01000000000', null=True)
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default='profile_pics/avatar.png', null=True)
     birthday = models.DateField(default=timezone.now, null=True)
-    portfolio_site = models.URLField(default='www.facebook.com', null=True, blank=True)
+    portfolio_site = models.URLField(default='http://www.facebook.com', null=True, blank=True)
     country = models.CharField(default='Egypt', null=True, max_length=20)
 
     def __str__(self):
