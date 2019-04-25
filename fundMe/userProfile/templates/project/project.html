@@ -11,12 +11,23 @@
         end_date: {{project.end_date}} <br>
         total_target: {{project.total_target}} <br>
         <!-- Description : {{project.details}}-->
+    </div>
 
+    <div class="jumbotron">
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
-<!--            {{ project_tags_form.as_p }}-->
-            <input type="submit" name="" value="Submit">
+            {{ donation_form.as_p }}
+            <input type="submit" name="" value="Submit donation">
         </form>
     </div>
+
+    <div class="jumbotron">
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ donation_form.as_p }}
+            <input type="submit" name="" value="Submit donation">
+        </form>
+    </div>
+
 </div>
 {% endblock %}

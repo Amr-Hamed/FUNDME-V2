@@ -170,7 +170,14 @@ def show_a_project(request, id):
     donation_form = MakeDonationForm(data=request.POST)
     if donation_form.is_valid():
         donation = donation_form.save(commit=False)
-        # donation.project
-        # user.save()
+        project = Project.objects.get(id=id)
+        current_user = User.objects.get(id=request.user.id)
+        current_user_profile = UserProfile.objects.filter(user=current_user)
+        donation.project = project
+        donation.user = current_user_profile.first()
+        donation.save()
     # print(request.user)
-    return render(request, 'project/project.html', {'project': project})
+    return render(request, 'project/project.html', {
+        'project': project,
+        'donation_form': donation_form
+    })

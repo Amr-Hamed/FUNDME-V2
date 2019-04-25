@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, ProjectDonations
+from .models import UserProfile, ProjectDonations, ProjectComments
 from django.contrib.auth.models import User
 
 from .models import Project, ProjectPics, ProjectTags
@@ -48,6 +48,15 @@ class ProjectTagsForm(forms.ModelForm):
 
 class MakeDonationForm(forms.ModelForm):
     donation_amount = forms.IntegerField(required=True)
+
     class Meta:
         model = ProjectDonations
         fields = ('donation_amount',)
+
+
+class AddCommentForm(forms.ModelForm):
+    comment_body = forms.CharField(required=True)
+
+    class Meta:
+        model = ProjectComments
+        fields = ('comment_reports',)
