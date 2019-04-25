@@ -23,5 +23,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('special/', views.special, name='special'),
     path('userProfile/', include('userProfile.urls')),
-    path('logout/', views.user_logout, name='logout')
+    path('logout/', views.user_logout, name='logout'),
+    path('projects/',views.show_projects , name="projects"),
+    path('project/<int:id>', views.show_a_project, name="show_project")
+
 ]

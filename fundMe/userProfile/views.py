@@ -10,7 +10,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile
+from django.shortcuts import render, get_object_or_404
+from .models import *
 
 
 def index(request):
@@ -108,3 +109,17 @@ def activate(request, uidb64, token):
 @login_required
 def create_project(request):
     return render(request, 'userProfile/create_project.html')
+
+
+# Show all projects
+@login_required
+def show_projects(request):
+    projects = Project.objects.all
+    return render(request, 'project/index.html', {'projects': projects})
+
+
+# show a single project
+@login_required
+def show_a_project(request, id):
+    project = get_object_or_404(Project, pk=id)
+    return render(request, 'project/project.html',{'project': project})
