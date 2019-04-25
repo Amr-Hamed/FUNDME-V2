@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
 from .forms import UserForm, UserProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -10,7 +12,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile
+from .models import UserProfile, ProjectPics
 
 
 def index(request):
@@ -107,4 +109,42 @@ def activate(request, uidb64, token):
 # create new project
 @login_required
 def create_project(request):
-    return render(request, 'userProfile/create_project.html')
+    if request.method == 'POST':
+        project_form = ProjectForm(data=request.POST)
+        project_pics_form = ProjectPicsForm(data=request.POST)
+        project_tags_form = ProjectTagsForm(data=request.POST)
+        if project_form.is_valid() and project_pics_form.is_valid() and project_tags_form.is_valid():
+            project = project_form.save(commit=False)
+            project.save()
+            if 'project_pictures' in request.FILES and request.FILES['project_pictures'] is not None:
+                print(request.FILES.getlist('project_pictures')[0])
+                for img in request.FILES.getlist('project_pictures'):
+                    project_pic = ProjectPics()
+                    project_pic.project = project
+                    project_pic.project_picture = img
+                    project_pic.save()
+            project_tags = project_tags_form.save(commit=False)
+            if 'project_tag' in request.POST and request.POST['project_tag'] is not "":
+                project_tags.project = project
+                project_tags.save()
+            return render(request, 'userProfile/create_project.html', {
+                'project_form': project_form,
+                'project_pics_form': project_pics_form,
+                'project_tags_form': project_tags_form,
+                'errors': None
+            })
+        else:
+            return render(request, 'userProfile/create_project.html', {
+                'project_form': project_form,
+                'errors': [project_form.errors, project_pics_form.errors, project_tags_form.errors]
+            })
+    else:
+        project_form = ProjectForm()
+        project_pics_form = ProjectPicsForm()
+        project_tags_form = ProjectTagsForm()
+    return render(request, 'userProfile/create_project.html', {
+        'project_form': project_form,
+        'project_pics_form': project_pics_form,
+        'project_tags_form': project_tags_form,
+        'errors': None
+    })

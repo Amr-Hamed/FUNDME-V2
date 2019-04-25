@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "userProfile/base.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ project_form.as_p }}
+<!--            {{ project_pics_form.as_p }}-->
+            <input type="file" name="project_pictures" multiple>
+            {{ project_tags_form.as_p }}
+            <input type="submit" name="" value="Submit">
+        </form>
+
+        {{errors}}
+    </div>
+</div>
+{% endblock %}
