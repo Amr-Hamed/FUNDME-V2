@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
-from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm
+from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm, RateProjectForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -13,7 +13,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile, ProjectPics, Project, ProjectComments
+from .models import UserProfile, ProjectPics, Project, ProjectComments, ProjectDonations, ProjectRatings
+from django.db.models import Sum, Avg
 
 
 def index(request):
@@ -116,7 +117,7 @@ def create_project(request):
         project_tags_form = ProjectTagsForm(data=request.POST)
         if project_form.is_valid() and project_pics_form.is_valid() and project_tags_form.is_valid():
             project = project_form.save(commit=False)
-            current_user = User.objects.get(id= request.user.id)
+            current_user = User.objects.get(id=request.user.id)
             # print(type(current_user))
             current_user_profile = UserProfile.objects.filter(user=current_user)
             # print(type(current_user_profile.first()))
@@ -163,51 +164,85 @@ def show_projects(request):
     return render(request, 'project/index.html', {'projects': projects})
 
 
-# show a single project
 @login_required
-def show_a_project(request, id):
-    project = get_object_or_404(Project, pk=id)
+def get_donation_form(request, project, current_user_profile):
     donation_form = MakeDonationForm(data=request.POST)
-    comment_form = AddCommentForm(data=request.POST)
-    report_form = ReportProjectForm(data=request.POST)
-    # print(report_form)
-    if report_form.is_valid():
-        report = report_form.save(commit=False)
-        project = Project.objects.get(id=id)
-        current_user = User.objects.get(id=request.user.id)
-        current_user_profile = UserProfile.objects.filter(user=current_user)
-        report.project = project
-        report.user = current_user_profile.first()
-        report.save()
-        report_form = ReportProjectForm()
-        print(report_form)
-    else:
-        print(report_form.errors)
     if donation_form.is_valid():
         donation = donation_form.save(commit=False)
-        project = Project.objects.get(id=id)
-        current_user = User.objects.get(id=request.user.id)
-        current_user_profile = UserProfile.objects.filter(user=current_user)
         donation.project = project
         donation.user = current_user_profile.first()
         donation.save()
         donation_form = MakeDonationForm()
-    # print(request.user)
+    return donation_form
+
+
+@login_required
+def get_comment_form(request, project, current_user_profile):
+    comment_form = AddCommentForm(data=request.POST)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
-        project = Project.objects.get(id=id)
-        current_user = User.objects.get(id=request.user.id)
-        current_user_profile = UserProfile.objects.filter(user=current_user)
         comment.project = project
         comment.user = current_user_profile.first()
         comment.save()
-        comment_form= AddCommentForm()
-    comments = ProjectComments.objects.filter(project= project)
-    # print(comments)
+        comment_form = AddCommentForm()
+    return comment_form
+
+
+@login_required
+def get_report_form(request, project, current_user_profile):
+    report_form = ReportProjectForm(data=request.POST)
+    if report_form.is_valid():
+        report = report_form.save(commit=False)
+        report.project = project
+        report.user = current_user_profile.first()
+        report.save()
+        report_form = ReportProjectForm()
+    return report_form
+
+
+@login_required
+def get_rating_form(request, project, current_user_profile):
+    rating_form = RateProjectForm(data=request.POST)
+    if rating_form.is_valid():
+        rate = rating_form.save(commit=False)
+        rate.project = project
+        rate.user = current_user_profile.first()
+        rate.save()
+        rating_form = RateProjectForm()
+    return rating_form
+
+
+# show a single project
+@login_required
+def show_a_project_details(request, id):
+    project = get_object_or_404(Project, pk=id)
+    comments = ProjectComments.objects.filter(project=project)
+    pictures = ProjectPics.objects.filter(project=project)
+    total_donations = ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount"))
+    average_rating = ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating"))
+
+    return [project, comments, pictures, total_donations, average_rating]
+
+
+@login_required
+def show_a_project(request, id):
+    project_details = show_a_project_details(request, id)
+    current_user = User.objects.get(id=request.user.id)
+    current_user_profile = UserProfile.objects.filter(user=current_user)
+    donation_form = get_donation_form(request, project_details[0], current_user_profile)
+    comment_form = get_comment_form(request, project_details[0], current_user_profile)
+    report_form = get_report_form(request, project_details[0], current_user_profile)
+    rating_form = get_rating_form(request, project_details[0], current_user_profile)
+
     return render(request, 'project/project.html', {
-        'project': project,
+        'project': project_details[0],
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,
-        'comments': comments
+        'comments': project_details[1],
+        'pictures': project_details[3],
+        'total_donation': project_details[3],
+        'rate_project': rating_form,
+        'average_rating': project_details[4]
     })
+

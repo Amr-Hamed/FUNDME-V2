@@ -10,7 +10,26 @@
         start_date: {{project.start_date}} <br>
         end_date: {{project.end_date}} <br>
         total_target: {{project.total_target}} <br>
-        <!-- Description : {{project.details}}-->
+        Description : {{project.details}} <br>
+        Total donations : {{total_donation.donation_amount__sum}} <br>
+        Average_rating : {{average_rating.user_rating__avg|floatformat:"0"}} <br> <br> <br>
+        {% if pictures is not None %}
+        pictures:
+        {% for picture in pictures %}
+        <img src="../../media/{{picture.project_picture}}" />
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="jumbotron">
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ rate_project.as_p }}
+            <input type="submit" name="" value="Rate Project">
+        </form>
+    </div>
+
+    <div class="jumbotron">
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ report_form.as_p }}
