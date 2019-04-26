@@ -2,7 +2,7 @@ from django import forms
 from .models import UserProfile, ProjectDonations, ProjectComments, ProjectReports
 from django.contrib.auth.models import User
 
-from .models import Project, ProjectPics, ProjectTags
+from .models import Project, ProjectPics, ProjectTags, ProjectRatings
 
 
 class UserForm(forms.ModelForm):
@@ -115,3 +115,9 @@ class UpdateProfile(forms.ModelForm):
         model = UserProfile
         fields = ('phone', 'portfolio_site', 'profile_pic', 'birthday', 'country')
 
+class RateProjectForm(forms.ModelForm):
+    user_rating = forms.IntegerField(required=True, min_value=0, max_value=5)
+
+    class Meta:
+        model = ProjectRatings
+        fields = ('user_rating',)
