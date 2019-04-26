@@ -1,5 +1,27 @@
 {% extends "userProfile/base.html" %}
+{% load staticfiles %}
+
 {% block body_block %}
+
+<div class="block-31" style="position: relative;">
+    <div class="owl-carousel loop-block-31 ">
+
+        {% static "images/" as x %}
+
+        <div class="block-30 item" style='background-image: url("{{x}}/bg_1.jpg");'
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h4 class="heading">Fundraising for the people and causes you care about.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <div class="container">
   <div class="jumbotron">
