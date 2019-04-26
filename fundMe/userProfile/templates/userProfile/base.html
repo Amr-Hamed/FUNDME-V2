@@ -16,11 +16,12 @@
             {# Django Home Link / Admin Link / Register Link#}
             <li><a class="navbar-brand" href="{% url 'index' %}">DJANGO</a></li>
             <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
-            <li><a class="navbar-link" href="{% url 'userProfile:register' %}">Register</a></li>
             {# Some logic on what to display for last item#}
             {% if user.is_authenticated %}
+            <li><a href="{% url 'userProfile:get_user_profile' user.username %}">{{ user.username }}</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
+            <li><a class="navbar-link" href="{% url 'userProfile:register' %}">Register</a></li>
             <li><a class="navbar-link" href="{% url 'userProfile:user_login' %}">Login</a></li>
             {% endif %}
 

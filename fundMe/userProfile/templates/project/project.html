@@ -1,0 +1,42 @@
+{% extends "userProfile/base.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+        <h1> {{project.title}} </h1> <br>
+        Category : {{project.category}} <br>
+        Owner: {{ project.user }} <br>
+        start_date: {{project.start_date}} <br>
+        end_date: {{project.end_date}} <br>
+        total_target: {{project.total_target}} <br>
+        <!-- Description : {{project.details}}-->
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ report_form.as_p }}
+            <input type="submit" name="" value="Report Project">
+        </form>
+    </div>
+
+    <div class="jumbotron">
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ donation_form.as_p }}
+            <input type="submit" name="" value="Submit donation">
+        </form>
+    </div>
+
+    <div class="jumbotron">
+        {% for comment in comments %}
+        <p>{{comment.user}} : {{comment.comment_body}}</p>
+        <!--add report to comment-->
+        {% endfor %}
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" name="" value="Submit donation">
+        </form>
+    </div>
+
+</div>
+{% endblock %}

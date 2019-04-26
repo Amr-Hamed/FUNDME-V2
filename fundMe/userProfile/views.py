@@ -1,5 +1,9 @@
-from django.shortcuts import render
-from .forms import UserForm, UserProfileInfoForm
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
+from .forms import UpdateProfile
+
+from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
+from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -10,7 +14,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile
+from .models import UserProfile, ProjectPics, Project, ProjectComments
 
 
 def index(request):
@@ -57,7 +61,7 @@ def register(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-            #      registered = True
+             #registered = True
             return HttpResponse('Please confirm your email address to complete the registration')
 
         else:
@@ -107,5 +111,128 @@ def activate(request, uidb64, token):
 # create new project
 @login_required
 def create_project(request):
-    return render(request, 'userProfile/create_project.html')
+    if request.method == 'POST':
+        project_form = ProjectForm(data=request.POST)
+        project_pics_form = ProjectPicsForm(data=request.POST)
+        project_tags_form = ProjectTagsForm(data=request.POST)
+        if project_form.is_valid() and project_pics_form.is_valid() and project_tags_form.is_valid():
+            project = project_form.save(commit=False)
+            current_user = User.objects.get(id= request.user.id)
+            # print(type(current_user))
+            current_user_profile = UserProfile.objects.filter(user=current_user)
+            # print(type(current_user_profile.first()))
+            project.user = current_user_profile.first()
+            project.save()
+            if 'project_pictures' in request.FILES and request.FILES['project_pictures'] is not None:
+                print(request.FILES.getlist('project_pictures')[0])
+                for img in request.FILES.getlist('project_pictures'):
+                    project_pic = ProjectPics()
+                    project_pic.project = project
+                    project_pic.project_picture = img
+                    project_pic.save()
+            project_tags = project_tags_form.save(commit=False)
+            if 'project_tag' in request.POST and request.POST['project_tag'] is not "":
+                project_tags.project = project
+                project_tags.save()
+            return render(request, 'userProfile/create_project.html', {
+                'project_form': project_form,
+                'project_pics_form': project_pics_form,
+                'project_tags_form': project_tags_form,
+                'errors': None
+            })
+        else:
+            return render(request, 'userProfile/create_project.html', {
+                'project_form': project_form,
+                'errors': [project_form.errors, project_pics_form.errors, project_tags_form.errors]
+            })
+    else:
+        project_form = ProjectForm()
+        project_pics_form = ProjectPicsForm()
+        project_tags_form = ProjectTagsForm()
+    return render(request, 'userProfile/create_project.html', {
+        'project_form': project_form,
+        'project_pics_form': project_pics_form,
+        'project_tags_form': project_tags_form,
+        'errors': None
+    })
 
+
+# Show all projects
+@login_required
+def show_projects(request):
+    projects = Project.objects.all
+    return render(request, 'project/index.html', {'projects': projects})
+
+
+# show a single project
+@login_required
+def show_a_project(request, id):
+    project = get_object_or_404(Project, pk=id)
+    donation_form = MakeDonationForm(data=request.POST)
+    comment_form = AddCommentForm(data=request.POST)
+    report_form = ReportProjectForm(data=request.POST)
+    # print(report_form)
+    if report_form.is_valid():
+        report = report_form.save(commit=False)
+        project = Project.objects.get(id=id)
+        current_user = User.objects.get(id=request.user.id)
+        current_user_profile = UserProfile.objects.filter(user=current_user)
+        report.project = project
+        report.user = current_user_profile.first()
+        report.save()
+        report_form = ReportProjectForm()
+        print(report_form)
+    else:
+        print(report_form.errors)
+    if donation_form.is_valid():
+        donation = donation_form.save(commit=False)
+        project = Project.objects.get(id=id)
+        current_user = User.objects.get(id=request.user.id)
+        current_user_profile = UserProfile.objects.filter(user=current_user)
+        donation.project = project
+        donation.user = current_user_profile.first()
+        donation.save()
+        donation_form = MakeDonationForm()
+    # print(request.user)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        project = Project.objects.get(id=id)
+        current_user = User.objects.get(id=request.user.id)
+        current_user_profile = UserProfile.objects.filter(user=current_user)
+        comment.project = project
+        comment.user = current_user_profile.first()
+        comment.save()
+        comment_form= AddCommentForm()
+    comments = ProjectComments.objects.filter(project= project)
+    # print(comments)
+    return render(request, 'project/project.html', {
+        'project': project,
+        'donation_form': donation_form,
+        'comment_form': comment_form,
+        'report_form': report_form,
+        'comments': comments
+    })
+
+
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get(user=user)
+    return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
+
+
+def update_user_profile(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get(user=user)
+    if request.method == 'POST':
+        form = UpdateProfile(request.POST, instance=userprofile)
+        if form.is_valid():
+            updated= form.save(commit=False)
+            updated.save()
+            return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
+    else:
+        form = UpdateProfile(request.POST, instance=userprofile)
+
+    context = {
+        "form": form
+    }
+    return render(request, 'userProfile/update_user_profile.html', context)

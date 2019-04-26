@@ -1,5 +1,5 @@
 from django.contrib import admin
-from userProfile.models import *
+from .models import *
 # Register your models here.
 
 admin.site.register(UserProfile)
@@ -11,3 +11,4 @@ admin.site.register(ProjectPics)
 admin.site.register(ProjectReports)
 admin.site.register(ProjectDonations)
 admin.site.register(ProjectComments)
+
