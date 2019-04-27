@@ -270,3 +270,23 @@ def update_user_profile(request, username):
         "form": form
     }
     return render(request, 'userProfile/update_user_profile.html', context)
+
+
+def delete_user_profile(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get(user=user)
+    logout(request)
+    try:
+      projects = Project.objects.get(user=userprofile)
+    except(TypeError, ValueError, OverflowError, Project.DoesNotExist):
+      projects = None
+
+    if projects is not None:
+        projects.delete()
+
+    userprofile.delete()
+    user.delete()
+    return render(request, 'userProfile/registeration.html',
+                  {'user_form': UserForm,
+                   'profile_form': UserProfileInfoForm})
+

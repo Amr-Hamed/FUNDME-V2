@@ -7,7 +7,7 @@
         <h1>Update your Profile</h1>
         <h3>Just fill out the form.</h3>
 
-        <form enctype="multipart/form-data" method="POST">
+        <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" name="" value="update">
