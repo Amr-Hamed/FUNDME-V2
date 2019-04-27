@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(default='d@gmail.com', unique=True, verbose_name='email address')
     phone = models.BigIntegerField(default='01000000000', null=True)
-    profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default='profile_pics/avatar.png', null=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, default='profile_pics/avatar.png', null=True)
     birthday = models.DateField(default=timezone.now, null=True)
     portfolio_site = models.URLField(default='http://www.facebook.com', null=True, blank=True)
     country = models.CharField(default='Egypt', null=True, max_length=20)

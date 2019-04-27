@@ -1,5 +1,6 @@
 {% extends 'userProfile/base.html' %}
 {% block body_block %}
+
 <div class="container">
     <a href="update">Update</a>
      <a href="delete">Delete my account</a>
@@ -13,7 +14,7 @@
             <h3>{{userprofile.portfolio_site}}</h3>
     <h3>{{userprofile.phone}}</h3>
           <h3>{{userprofile.country}}</h3>
-      <img src="/media/{{userprofile.profile_pic}}">
+      <img src="{{ userprofile.profile_pic.url }}">
   </div>
 </div>
 

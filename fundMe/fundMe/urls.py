@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from userProfile import views
+from django.conf import settings  # new
+from django.conf.urls.static import static  # new
+
 
 
 
@@ -29,3 +32,5 @@ urlpatterns = [
     path('project/<int:id>', views.show_a_project, name="show_project")
 ]
 
+if settings.DEBUG:  # new
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

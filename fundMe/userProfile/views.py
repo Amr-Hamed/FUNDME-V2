@@ -286,7 +286,5 @@ def delete_user_profile(request, username):
 
     userprofile.delete()
     user.delete()
-    return render(request, 'userProfile/registeration.html',
-                  {'user_form': UserForm,
-                   'profile_form': UserProfileInfoForm})
+    return HttpResponseRedirect(reverse('index'))
 
