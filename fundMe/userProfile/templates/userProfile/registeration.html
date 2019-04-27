@@ -25,8 +25,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -57,10 +58,6 @@
 
 <!-- END nav -->
 
-{% if registered %}
-<h1>Thank you for registering!</h1>
-{% else %}
-
 <div style="width:50%; margin-left: 25%">
 
     <div class="site-section">
@@ -73,26 +70,20 @@
             </div>
 
             <div>
-                <div class="text-center">
+                <div>
 
                     <form enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         {{ user_form|crispy }}
                         {{ profile_form|crispy }}
-                        <input class="btn btn-success" type="submit" name="" value="Register">
+                        <input class="btn btn-success py-3 px-5" style="width:50%;margin-left: 25%;margin-top:10% " type="submit" name="" value="Register">
                     </form>
-
-                    {% endif %}
 
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 
 
 <!-- loader -->

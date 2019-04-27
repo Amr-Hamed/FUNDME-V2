@@ -14,12 +14,18 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from .models import UserProfile, ProjectPics, Project, ProjectComments, ProjectDonations, ProjectRatings
+from .models import *
 from django.db.models import Sum, Avg
 
 
 def index(request):
-    return render(request, 'userProfile/index.html')
+    latest_projects = Project.objects.all().order_by('start_date')[:5]
+    categories = Categories.objects.all
+    featured_projects = FeaturedProject.objects.all()[:5]
+    return render(request, 'userProfile/index.html', {'latest_projects': latest_projects,
+                                                      'categories': categories,
+                                                      'featured_projects': featured_projects,
+                                                      })
 
 
 @login_required

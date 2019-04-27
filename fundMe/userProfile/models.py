@@ -15,11 +15,11 @@ class UserProfile(models.Model):
     country = models.CharField(default='Egypt', null=True, max_length=20)
 
     def __str__(self):
-        return self.user.email
+        return self.user.username
 
 
 class Categories(models.Model):
-    category = models.CharField(max_length=50, null=True, unique=True)
+    category = models.CharField(max_length=15, null=True, unique=True)
 
     def __str__(self):
         return self.category
@@ -71,3 +71,10 @@ class ProjectDonations(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
     donation_amount = models.BigIntegerField(default=0, null=True)
+
+
+class FeaturedProject(models.Model):
+    project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.project.title
