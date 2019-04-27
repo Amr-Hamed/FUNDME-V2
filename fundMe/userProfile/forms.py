@@ -14,8 +14,6 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'password', 'email')
 
-
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
@@ -26,9 +24,7 @@ class UserForm(forms.ModelForm):
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfile
-        fields = ('profile_pic', )
-
-
+        fields = ('profile_pic',)
 
 
 class PasswordForm(forms.ModelForm):
@@ -42,11 +38,13 @@ class PasswordForm(forms.ModelForm):
 
     def clean_current_password(self):
         # If the user entered the current password, make sure it's right
-        if self.cleaned_data['current_password'] and not self.user.check_password(self.cleaned_data['current_password']):
+        if self.cleaned_data['current_password'] and not self.user.check_password(
+                self.cleaned_data['current_password']):
             raise ValidationError('This is not your current password. Please try again.')
 
         # If the user entered the current password, make sure they entered the new passwords as well
-        if self.cleaned_data['current_password'] and not (self.cleaned_data['password'] or self.cleaned_data['confirm_password']):
+        if self.cleaned_data['current_password'] and not (
+                self.cleaned_data['password'] or self.cleaned_data['confirm_password']):
             raise ValidationError('Please enter a new password and a confirmation to update.')
 
         return self.cleaned_data['current_password']
@@ -62,11 +60,11 @@ class PasswordForm(forms.ModelForm):
         return self.cleaned_data.get('confirm_password')
 
 
-
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('category', 'title', 'start_date', 'end_date', 'total_target')
+        details = forms.CharField(widget=forms.Textarea)
+        fields = ('category', 'title', 'details', 'start_date', 'end_date', 'total_target')
 
 
 class ProjectPicsForm(forms.ModelForm):
@@ -109,11 +107,11 @@ class ReportProjectForm(forms.ModelForm):
         fields = ('report_body',)
 
 
-
 class UpdateProfile(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('phone', 'portfolio_site', 'profile_pic', 'birthday', 'country')
+
 
 class RateProjectForm(forms.ModelForm):
     user_rating = forms.IntegerField(required=True, min_value=0, max_value=5)

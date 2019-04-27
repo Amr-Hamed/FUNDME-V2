@@ -29,7 +29,7 @@ class Project(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=50, default='Project Title', unique=True)
-    details = models.CharField(max_length=300, null=True)
+    details = models.TextField(max_length=300, null=True)
     start_date = models.DateField(default=timezone.now, null=True)
     end_date = models.DateField(default=timezone.now, null=True)
     total_target = models.BigIntegerField(default=0, null=True)
