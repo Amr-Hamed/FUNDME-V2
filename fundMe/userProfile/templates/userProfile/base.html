@@ -43,10 +43,19 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
 
                 {% if user.is_authenticated %}
-                 <li class="nav-item"> <a class="nav-link"
-                                        href="{% url 'userProfile:update_user_profile' user.username %}">Welcome, {{user.username}}</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+
+                <li class="nav-item"><a class="nav-link"
+                                        href="{% url 'userProfile:update_user_profile' user.username %}">Welcome,
+                    {{user.username}}</a></li>
+
+
+                <li class="nav-item">
+                    <img src="{{ user.userprofile.profile_pic.url }}" ,
+                         style="height:40px;width:40px;border-radius:50%;margin-top:50%">
+                </li>
+
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'userProfile:register' %}">Sign up</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'userProfile:user_login' %}">Sign in</a></li>
