@@ -260,33 +260,6 @@ def get_user_profile(request, username):
     return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
 
 
-# def update_user_profile(request, username):
-#     user = User.objects.get(username=username)
-#     userprofile = UserProfile.objects.get(user=user)
-#     if request.method == 'POST':
-#         profileform = UpdateProfile(request.POST, instance=userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
-#                                                                                  'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-#         userform = UpdateUser(request.POST, instance=user, initial={'firstname': user.first_name,
-#                                                                     'lastname': user.last_name,
-#                                                                     'username': user.username, 'email': user.email})
-#
-#         if userform.is_valid() and profileform.is_valid():
-#             updateduser= userform.save()
-#             updateduser.save()
-#             updatedprofile = profileform.save()
-#             updatedprofile.save()
-#             return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
-#     else:
-#         profileform = UpdateProfile(initial={'phone': userprofile.phone, 'country': userprofile.country,
-#                                              'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-#         userform = UpdateUser(initial={'firstname': user.first_name,
-#                                                                     'lastname': user.last_name,
-#                                                                     'username': user.username, 'email': user.email})
-#         context = {
-#         "userform": userform ,
-#         "profileform": profileform
-#         }
-#         return render(request, 'userProfile/update_user_profile.html', context)
 
 
 def delete_user_profile(request, username):
