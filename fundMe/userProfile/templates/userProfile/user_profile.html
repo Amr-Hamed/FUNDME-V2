@@ -14,7 +14,9 @@
             <h3>{{userprofile.portfolio_site}}</h3>
     <h3>{{userprofile.phone}}</h3>
           <h3>{{userprofile.country}}</h3>
+      {% if userprofile.profile_pic %}
       <img src="{{ userprofile.profile_pic.url }}">
+      {% endif %}
   </div>
 </div>
 

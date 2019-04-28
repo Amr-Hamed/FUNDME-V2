@@ -68,9 +68,10 @@
             <div>
                 <div>
 
-                    <form method="POST">
+                    <form enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
-                        {{ form|crispy }}
+                       {{ userform|crispy }}
+                        {{ profileform|crispy }}
                         <input class="btn btn-success py-3 px-5" style="width:50%;margin-left: 25%;margin-top:10% "
                                type="submit" name="" value="Confirm UPDATES">
                     </form>

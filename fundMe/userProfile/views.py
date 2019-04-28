@@ -260,33 +260,33 @@ def get_user_profile(request, username):
     return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
 
 
-# def update_user_profile(request, username):
-#     user = User.objects.get(username=username)
-#     userprofile = UserProfile.objects.get(user=user)
-#     if request.method == 'POST':
-#         profileform = UpdateProfile(request.POST, instance=userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
-#                                                                                  'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-#         userform = UpdateUser(request.POST, instance=user, initial={'firstname': user.first_name,
-#                                                                     'lastname': user.last_name,
-#                                                                     'username': user.username, 'email': user.email})
-#
-#         if userform.is_valid() and profileform.is_valid():
-#             updateduser= userform.save()
-#             updateduser.save()
-#             updatedprofile = profileform.save()
-#             updatedprofile.save()
-#             return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
-#     else:
-#         profileform = UpdateProfile(initial={'phone': userprofile.phone, 'country': userprofile.country,
-#                                              'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-#         userform = UpdateUser(initial={'firstname': user.first_name,
-#                                                                     'lastname': user.last_name,
-#                                                                     'username': user.username, 'email': user.email})
-#         context = {
-#         "userform": userform ,
-#         "profileform": profileform
-#         }
-#         return render(request, 'userProfile/update_user_profile.html', context)
+def update_user_profile(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get(user=user)
+    if request.method == 'POST':
+        profileform = UpdateProfile(data=request.POST, files=request.FILES, instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
+                                                                                                'lastname': userprofile.lastname,
+                                                                                                'firstname': userprofile.firstname,
+                                                                                                'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
+        userform = UpdateUser(data=request.POST, instance=request.user, initial={'username': user.username, 'email': user.email})
+
+        if userform.is_valid() and profileform.is_valid():
+            updatedprofile = profileform.save(commit=False)
+            if 'profile_pic' in request.FILES:
+                updatedprofile.profile_pic = request.FILES['profile_pic']
+            updatedprofile.save()
+            return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
+    else:
+        profileform = UpdateProfile(instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
+                                             'lastname': userprofile.lastname,
+                                             'firstname': userprofile.firstname,
+                                             'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
+        userform = UpdateUser( instance=request.user, initial={'username': user.username, 'email': user.email})
+    context = {
+        "userform": userform,
+        "profileform": profileform
+    }
+    return render(request, 'userProfile/update_user_profile.html', context)
 
 
 def delete_user_profile(request, username):
@@ -305,19 +305,4 @@ def delete_user_profile(request, username):
     user.delete()
     return HttpResponseRedirect(reverse('index'))
 
-def update_user_profile(request, username):
 
-    user = User.objects.get(username=username)
-    if request.method == 'POST':
-        userform = UpdateUser(request.POST, instance=user)
-
-        if userform.is_valid():
-            updateduser= userform.save()
-            updateduser.save()
-            return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
-    else:
-        userform = UpdateUser()
-        context = {
-        "userform": userform,
-        }
-        return render(request, 'userProfile/update_user_profile.html', context)
