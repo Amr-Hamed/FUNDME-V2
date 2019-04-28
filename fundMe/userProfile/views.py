@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
-from .forms import UpdateProfile
+from .forms import UpdateProfile,UpdateUser
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
 from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm, RateProjectForm
@@ -260,22 +260,33 @@ def get_user_profile(request, username):
     return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
 
 
-def update_user_profile(request, username):
-    user = User.objects.get(username=username)
-    userprofile = UserProfile.objects.get(user=user)
-    if request.method == 'POST':
-        form = UpdateProfile(request.POST, instance=userprofile)
-        if form.is_valid():
-            updated= form.save(commit=False)
-            updated.save()
-            return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
-    else:
-        form = UpdateProfile(request.POST, instance=userprofile)
-
-    context = {
-        "form": form
-    }
-    return render(request, 'userProfile/update_user_profile.html', context)
+# def update_user_profile(request, username):
+#     user = User.objects.get(username=username)
+#     userprofile = UserProfile.objects.get(user=user)
+#     if request.method == 'POST':
+#         profileform = UpdateProfile(request.POST, instance=userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
+#                                                                                  'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
+#         userform = UpdateUser(request.POST, instance=user, initial={'firstname': user.first_name,
+#                                                                     'lastname': user.last_name,
+#                                                                     'username': user.username, 'email': user.email})
+#
+#         if userform.is_valid() and profileform.is_valid():
+#             updateduser= userform.save()
+#             updateduser.save()
+#             updatedprofile = profileform.save()
+#             updatedprofile.save()
+#             return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
+#     else:
+#         profileform = UpdateProfile(initial={'phone': userprofile.phone, 'country': userprofile.country,
+#                                              'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
+#         userform = UpdateUser(initial={'firstname': user.first_name,
+#                                                                     'lastname': user.last_name,
+#                                                                     'username': user.username, 'email': user.email})
+#         context = {
+#         "userform": userform ,
+#         "profileform": profileform
+#         }
+#         return render(request, 'userProfile/update_user_profile.html', context)
 
 
 def delete_user_profile(request, username):
@@ -294,3 +305,19 @@ def delete_user_profile(request, username):
     user.delete()
     return HttpResponseRedirect(reverse('index'))
 
+def update_user_profile(request, username):
+
+    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        userform = UpdateUser(request.POST, instance=user)
+
+        if userform.is_valid():
+            updateduser= userform.save()
+            updateduser.save()
+            return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
+    else:
+        userform = UpdateUser()
+        context = {
+        "userform": userform,
+        }
+        return render(request, 'userProfile/update_user_profile.html', context)

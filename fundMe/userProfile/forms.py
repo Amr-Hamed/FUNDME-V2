@@ -6,13 +6,26 @@ from .models import Project, ProjectPics, ProjectTags, ProjectRatings
 
 
 class UserForm(forms.ModelForm):
+    firstname = forms.CharField(max_length=30, label="Firstname")
+    lastname = forms.CharField(max_length=30, label="Lastname")
     username = forms.CharField(max_length=30, label="Username")
     email = forms.EmailField(widget=forms.EmailInput, label="E-mail")
     password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+
+    def clean(self):
+        cleaned_data = super(UserForm, self).clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if password != confirm_password:
+            raise forms.ValidationError(
+                "password and confirm_password does not match"
+            )
 
     class Meta():
         model = User
-        fields = ('username', 'password', 'email')
+        fields = ('firstname', 'lastname','username', 'email', 'password', 'confirm_password')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -108,9 +121,16 @@ class ReportProjectForm(forms.ModelForm):
 
 
 class UpdateProfile(forms.ModelForm):
+    phone = forms.RegexField(max_length=30, required=False, regex=r'^01[0125][0-9]{8}$')
+    country = forms.CharField(required=False, max_length=20)
+    birthday = forms.DateTimeField(required=False)
+    profile_pic = forms.ImageField(required=False)
+
     class Meta:
         model = UserProfile
-        fields = ('phone', 'portfolio_site', 'profile_pic', 'birthday', 'country')
+        fields = ('phone', 'profile_pic', 'birthday', 'country')
+
+
 
 
 class RateProjectForm(forms.ModelForm):
@@ -119,3 +139,12 @@ class RateProjectForm(forms.ModelForm):
     class Meta:
         model = ProjectRatings
         fields = ('user_rating',)
+
+
+class UpdateUser(forms.ModelForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
