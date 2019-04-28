@@ -69,6 +69,8 @@ def register(request):
             )
             email.send()
              #registered = True
+            user.is_active = False
+            user.save()
             return HttpResponse('Please confirm your email address to complete the registration')
 
         else:
@@ -104,15 +106,18 @@ def user_login(request):
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
-        user = UserProfile.objects.get(pk=uid)
+        user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, UserProfile.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
+        #user.is_active = True
         # return HttpResponseRedirect(reverse('index'))
-        return HttpResponse('Activation link is invalid!')
-    else:
+        user.is_active = True
+        user.save()
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
+
 
 
 # create new project
@@ -276,7 +281,7 @@ def update_user_profile(request, username):
             if 'profile_pic' in request.FILES:
                 updatedprofile.profile_pic = request.FILES['profile_pic']
             updatedprofile.save()
-            return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
+            return render(request, 'userProfile/index.html', {"user": user, "userprofile": userprofile})
     else:
         profileform = UpdateProfile(instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
                                              'lastname': userprofile.lastname,

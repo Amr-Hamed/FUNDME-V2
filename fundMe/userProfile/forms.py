@@ -123,7 +123,7 @@ class UpdateProfile(forms.ModelForm):
     phone = forms.RegexField(max_length=30, required=False, regex=r'^01[0125][0-9]{8}$', label="Phone")
     country = forms.CharField(required=False, max_length=20, label="Country")
     birthday = forms.DateTimeField(required=False, label="Birthdate YY-M-D")
-    profile_pic = forms.ImageField(required=False, label="Profile pic")
+    profile_pic = forms.ImageField(required=True, label="Profile pic")
 
     class Meta:
         model = UserProfile
