@@ -43,7 +43,8 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
 
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'userProfile:get_user_profile' user.username %}">{{ user.username }}</a></li>
+                 <li class="nav-item"> <a class="nav-link"
+                                        href="{% url 'userProfile:update_user_profile' user.username %}">Welcome, {{user.username}}</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
