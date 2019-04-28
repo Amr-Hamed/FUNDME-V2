@@ -260,6 +260,7 @@ def get_user_profile(request, username):
     return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
 
 
+
 def update_user_profile(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
@@ -284,8 +285,7 @@ def update_user_profile(request, username):
         userform = UpdateUser( instance=request.user, initial={'username': user.username, 'email': user.email})
     context = {
         "userform": userform,
-        "profileform": profileform
-    }
+        "profileform": profileform}
     return render(request, 'userProfile/update_user_profile.html', context)
 
 
