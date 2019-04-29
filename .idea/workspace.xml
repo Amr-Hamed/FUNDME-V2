@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02b6eac0-6342-4752-92c9-025aa0c51b95" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FUNDME-V2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FUNDME-V2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/autodetector.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/exceptions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/executor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/graph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/loader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/migration.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/operations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/operations/base.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/operations/fields.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/operations/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/operations/special.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/operations/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/optimizer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/questioner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/recorder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/serializer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/state.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/topological_sort.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoenv/lib/python3.4/site-packages/django/db/migrations/writer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/projects.html" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/projects.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundMe/userProfile/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="135" column="53" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="53" />
+            <state relative-caret-position="168">
+              <caret line="333" column="83" selection-start-line="333" selection-start-column="83" selection-end-line="333" selection-end-column="83" />
               <folding>
                 <element signature="e#955#1440#0" />
                 <element signature="e#1576#1641#0" />
@@ -64,20 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/projects.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3930">
-              <caret line="262" column="18" selection-start-line="262" selection-start-column="18" selection-end-line="262" selection-end-column="18" />
+            <state relative-caret-position="210">
+              <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -171,13 +138,13 @@
         <option value="$PROJECT_DIR$/fundMe/userProfile/forms.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/urls.py" />
-        <option value="$PROJECT_DIR$/fundMe/userProfile/views.py" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/models.py" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/projects.html" />
+        <option value="$PROJECT_DIR$/fundMe/userProfile/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="20" />
     <option name="y" value="28" />
     <option name="width" value="1346" />
@@ -331,10 +298,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="28" width="1366" height="706" extended-state="6" />
+    <frame x="0" y="28" width="1366" height="706" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18181819" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22280179" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -425,13 +392,6 @@
       </provider>
     </entry>
     <entry file="file:///usr/lib64/python3.6/site-packages/django/contrib/auth/models.py" />
-    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3930">
-          <caret line="262" column="18" selection-start-line="262" selection-start-column="18" selection-end-line="262" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -493,10 +453,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/projects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="135" column="53" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="53" />
+        <state relative-caret-position="168">
+          <caret line="333" column="83" selection-start-line="333" selection-start-column="83" selection-end-line="333" selection-end-column="83" />
           <folding>
             <element signature="e#955#1440#0" />
             <element signature="e#1576#1641#0" />
@@ -515,13 +489,6 @@
             <element signature="e#10702#12653#0" />
             <element signature="e#12704#13127#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/projects.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>

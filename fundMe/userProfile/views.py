@@ -331,7 +331,8 @@ class ProjectDetail(Project):
     def __init__(self, projectId, user, category, title, details, start_date, end_date, total_target, total_donations,
                  average_rating):
         Project.__init__(self, projectId, user, category, title, details, start_date, end_date, total_target)
-        self.total_donations = total_donations
-        self.average_rating = average_rating
+        self.total_donations = 0 if total_donations['donation_amount__sum'] is None else float(total_donations['donation_amount__sum'])
+        self.average_rating = average_rating['user_rating__avg']
+        self.percentage = "{0:.2f}".format((self.total_donations/total_target)*100)
 
 
