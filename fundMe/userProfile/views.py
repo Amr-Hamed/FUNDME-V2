@@ -263,16 +263,27 @@ def show_a_project(request, id):
 def get_projects(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
-    print(type(userprofile))
     projects = userprofile.project_set.all()
     projectDetails = []
     for project in projects:
+        # pictures = project.projectpics_set.all()
+        # comments = project.projectcomments_set.all()
         p = ProjectDetail(project.id, project.user.id, project.category.id, project.title, project.details,
                           project.start_date, project.end_date, project.total_target,
                           ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
                           ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
         projectDetails.append(p)
     return render(request, 'userProfile/projects.html', {'projects': projectDetails})
+
+
+# get user's donations
+@login_required
+def get_user_donations(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get(user=user)
+    donations = userprofile.projectdonations_set.all()
+    return render(request, 'userProfile/donations.html', {'donations': donations})
+
 
 
 def get_user_profile(request, username):
