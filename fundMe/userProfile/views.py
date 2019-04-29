@@ -258,6 +258,22 @@ def show_a_project(request, id):
         'average_rating': project_details[4]
     })
 
+# show user's projects
+@login_required
+def get_projects(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get(user=user)
+    print(type(userprofile))
+    projects = userprofile.project_set.all()
+    projectDetails = []
+    for project in projects:
+        p = ProjectDetail(project.id, project.user.id, project.category.id, project.title, project.details,
+                          project.start_date, project.end_date, project.total_target,
+                          ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
+                          ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
+        projectDetails.append(p)
+    return render(request, 'userProfile/projects.html', {'projects': projectDetails})
+
 
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
@@ -309,5 +325,13 @@ def delete_user_profile(request, username):
     userprofile.delete()
     user.delete()
     return HttpResponseRedirect(reverse('index'))
+
+
+class ProjectDetail(Project):
+    def __init__(self, projectId, user, category, title, details, start_date, end_date, total_target, total_donations,
+                 average_rating):
+        Project.__init__(self, projectId, user, category, title, details, start_date, end_date, total_target)
+        self.total_donations = total_donations
+        self.average_rating = average_rating
 
 

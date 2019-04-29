@@ -28,6 +28,7 @@ class Categories(models.Model):
 
 
 class Project(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=50, default='Project Title', unique=True)
@@ -35,6 +36,20 @@ class Project(models.Model):
     start_date = models.DateField(default=timezone.now, null=True)
     end_date = models.DateField(default=timezone.now, null=True)
     total_target = models.BigIntegerField(default=0, null=True)
+
+    # def __init__(self, id, user, category, title, details, start_date, end_date, total_target):
+    #     super(Project, self).__init__()
+    #     self.id = id
+    #     self.user = UserProfile.objects.get(pk=user)
+    #     self.category = Categories.objects.get(pk=category)
+    #     self.title = title
+    #     self.details = details
+    #     self.start_date = start_date
+    #     self.end_date = end_date
+    #     self.total_target = total_target
+
+    def __unicode__(self):
+        return self.title
 
     def __str__(self):
         return self.title
