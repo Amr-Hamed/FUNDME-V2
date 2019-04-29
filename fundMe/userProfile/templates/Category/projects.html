@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ category.category }}</title>
+</head>
+<body>
+
+{% for project in projects %}
+ <h1> <a href= "{% url 'show_project' project.id %}" >{{project.title}} </a></h1>
+ Category : {{project.category}} <br>
+ Owner: {{ project.user.firstname }} <br>
+ start_date: {{project.start_date}} <br>
+ end_date: {{project.end_date}} <br>
+ total_target: {{project.total_target}} <br>
+ Description : {{project.details}}<br>
+
+
+ total_donations : {{ project.total_donations }}<br>
+
+ average_rating : {{project.average_rating}}<br>
+ percentage : {{project.percentage}}
+ {% for p in project.projectpics_set.all %}
+  pic {{p.project_picture}}
+{% endfor %}
+
+{% endfor %}
+
+</body>
+</html>

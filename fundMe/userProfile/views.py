@@ -120,7 +120,7 @@ def activate(request, uidb64, token):
 
 
 
-# create new project
+#create new project
 @login_required
 def create_project(request):
     if request.method == 'POST':
@@ -240,7 +240,7 @@ def show_a_project(request, id):
     rating_form = get_rating_form(request, project, current_user_profile)
     # replace comment with project_details.projectcomments_set.all
     # replace pictures with project_details.projectpics_set.all
-    #replace average_rating with project_details.average_rating
+    # replace average_rating with project_details.average_rating
     # replace total_donation with project_details.total_donation
     return render(request, 'project/project.html', {
         'project': project_details,
@@ -283,8 +283,11 @@ def get_user_donations(request, username):
 @login_required
 def get_category_projects(request,id):
     category = get_object_or_404(Categories, pk=id)
-    projects = category.projects_set.all
-    return render(request, 'project/index.html', {'category':category,'projects': projects})
+    projects = category.project_set.all()
+    projectDetails = []
+    for project in projects:
+        projectDetails.append(add_project_details(project))
+    return render(request, 'Category/projects.html', {'category':category,'projects': projectDetails})
 
 
 def get_user_profile(request, username):
