@@ -14,10 +14,6 @@
                     <div class="col-md-7 text-center">
                         <h2 class="heading">{{ project.title }}</h2>
                         <p class="lead">by {{ project.user.firstname }} {{ project.user.lastname }}</p>
-                        <!--<div>-->
-                        <!--<a href="{% url 'userProfile:create_project' %}"><input value="Start your project"-->
-                        <!--class="btn btn-primary"></a>-->
-                        <!--</div>-->
 
 
                         <div class="progress custom-progress">
@@ -25,8 +21,8 @@
                                  style="width: 20%"
                                  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <span class="fund-raised d-block mb-5">$8,100 raised of $30,000</span>
-                        <p><a href="#" class="btn btn-primary btn-hover-white py-3 px-5" onclick="donate()">Donate
+                        <span class="fund-raised d-block mb-5" style="color:#ffc107 !important">$ {{total_donation.donation_amount__sum}} raised of $ {{project.total_target}}</span>
+                        <p><a href="#actions" class="btn btn-primary btn-hover-white py-3 px-5">Donate
                             Now</a></p>
 
 
@@ -85,19 +81,20 @@
                     </div>
                 </div>
 
+                <hr>
 
-                <div class="site-section fund-raisers">
+                <div class="site-section fund-raisers" id="actions">
                     <div class="container">
                         <div class="row mb-5">
-                            <div class="col-md-12 text-center">
-                                <h2>Project actions</h2>
+                            <div class="block-23">
+                                <h3> <b>Project Actions </b></h3>
                             </div>
                         </div>
 
                         <div class="row">
 
                             <!--Donations Section-->
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="donate">
                                 <div class="person-donate text-center bg-light pt-4">
                                     <img src="{% static 'images/money_4.png' %}" alt="Image placeholder"
                                          class="img-fluid">
@@ -175,7 +172,7 @@
                             <!--Reports Section-->
                             <div class="col-md-6">
                                 <div class="person-donate text-center bg-light pt-4">
-                                    <img src="{% static 'images/report_3.png' %}" alt="Image placeholder"
+                                    <img src="{% static 'images/report_2.png' %}" alt="Image placeholder"
                                          class="img-fluid">
                                     <div class="donate-info">
                                         <h2>Report this project</h2>
@@ -252,16 +249,16 @@
 
                 <div class="sidebar-box">
                     <div class="categories">
-                        <h3>Category</h3>
+                        <h3> <b> Category </b></h3>
                         <li><a href="#">{{project.category}} </a></li>
                     </div>
                 </div>
 
                 <div class="sidebar-box">
-                    <h3>Project Owner</h3>
+                    <h3> <b> Project Owner </b></h3>
 
                     <img src="{{project.user.profile_pic.url}}" alt="Image placeholder" class="img-fluid mb-4 rounded">
-                    <h3>{{project.user.firstname }} {{ project.user.lastname }} </h3>
+                    <h3 class="text-center">{{project.user.firstname }} {{ project.user.lastname }} </h3>
                 </div>
             </div>
         </div>
@@ -280,9 +277,12 @@
         Description : {{project.details}} <br>
         Total donations : {{total_donation.donation_amount__sum}} <br>
         Average_rating : {{average_rating.user_rating__avg|floatformat:"0"}} <br> <br> <br>
+
         {% if pictures is not None %}
         pictures:
+
         {% for picture in pictures %}
+        {{picture}}
         <img src="{{picture.url}}"/>
         {% endfor %}
         {% endif %}
@@ -309,6 +309,8 @@
             swal(`You donated: ${value} $`);
         });
     }
+
+
 
 
 
