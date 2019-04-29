@@ -20,6 +20,9 @@
 
  average_rating : {{project.average_rating}}<br>
  percentage : {{project.percentage}}
+ {% for p in project.projectpics_set.all %}
+  pic {{p.project_picture}}
+{% endfor %}
 
 {% endfor %}
 
