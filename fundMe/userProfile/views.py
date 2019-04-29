@@ -19,9 +19,15 @@ from django.db.models import Sum, Avg
 
 
 def index(request):
-    latest_projects = Project.objects.all().order_by('start_date')[:5]
+    last_projects = Project.objects.all().order_by('start_date')[:5]
+    latest_projects = []
+    for project in last_projects:
+        latest_projects.append(add_project_details(project))
     categories = Categories.objects.all
-    featured_projects = FeaturedProject.objects.all()[:5]
+    admin_featured_projects = FeaturedProject.objects.all()[:5]
+    featured_projects = []
+    for project in admin_featured_projects:
+        featured_projects.append(add_project_details(project))
     return render(request, 'userProfile/index.html', {'latest_projects': latest_projects,
                                                       'categories': categories,
                                                       'featured_projects': featured_projects,

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02b6eac0-6342-4752-92c9-025aa0c51b95" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/fundMe/fundMe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/fundMe/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundMe/userProfile/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundMe/userProfile/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,13 +12,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="288" column="14" lean-forward="true" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
+            <state relative-caret-position="165">
+              <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
               <folding>
-                <element signature="e#955#1440#0" />
                 <element signature="e#1576#1641#0" />
                 <element signature="e#1671#3457#0" />
                 <element signature="e#3489#4202#0" />
@@ -60,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="476">
+              <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
             </state>
           </provider>
         </entry>
@@ -151,9 +147,9 @@
         <option value="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/index.html" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/urls.py" />
         <option value="$PROJECT_DIR$/fundMe/fundMe/urls.py" />
-        <option value="$PROJECT_DIR$/fundMe/userProfile/views.py" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/templates/project/project.html" />
         <option value="$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/base.html" />
+        <option value="$PROJECT_DIR$/fundMe/userProfile/views.py" />
       </list>
     </option>
   </component>
@@ -470,31 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="288" column="14" lean-forward="true" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
-          <folding>
-            <element signature="e#955#1440#0" />
-            <element signature="e#1576#1641#0" />
-            <element signature="e#1671#3457#0" />
-            <element signature="e#3489#4202#0" />
-            <element signature="e#4247#4830#0" />
-            <element signature="e#4904#7148#0" />
-            <element signature="e#7219#7322#0" />
-            <element signature="e#7408#7724#0" />
-            <element signature="e#7809#8112#0" />
-            <element signature="e#8196#8496#0" />
-            <element signature="e#8580#8868#0" />
-            <element signature="e#9576#10572#0" />
-            <element signature="e#11402#11638#0" />
-            <element signature="e#10453#10650#0" />
-            <element signature="e#10702#12653#0" />
-            <element signature="e#12704#13127#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
@@ -518,8 +489,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fundMe/userProfile/templates/userProfile/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="476">
+          <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fundMe/userProfile/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="e#1576#1641#0" />
+            <element signature="e#1671#3457#0" />
+            <element signature="e#3489#4202#0" />
+            <element signature="e#4247#4830#0" />
+            <element signature="e#4904#7148#0" />
+            <element signature="e#7219#7322#0" />
+            <element signature="e#7408#7724#0" />
+            <element signature="e#7809#8112#0" />
+            <element signature="e#8196#8496#0" />
+            <element signature="e#8580#8868#0" />
+            <element signature="e#9576#10572#0" />
+            <element signature="e#11402#11638#0" />
+            <element signature="e#10453#10650#0" />
+            <element signature="e#10702#12653#0" />
+            <element signature="e#12704#13127#0" />
+          </folding>
         </state>
       </provider>
     </entry>
