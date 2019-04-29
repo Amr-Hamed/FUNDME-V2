@@ -33,7 +33,6 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileInfoForm(forms.ModelForm):
-
     class Meta():
         model = UserProfile
         fields = ('firstname', 'lastname', 'profile_pic')
@@ -104,7 +103,7 @@ class MakeDonationForm(forms.ModelForm):
 
 
 class AddCommentForm(forms.ModelForm):
-    comment_body = forms.CharField(required=True)
+    comment_body = forms.CharField(widget=forms.Textarea, required=True)
 
     class Meta:
         model = ProjectComments
@@ -128,8 +127,6 @@ class UpdateProfile(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('firstname', 'lastname', 'phone', 'profile_pic', 'birthday', 'country')
-
-
 
 
 class RateProjectForm(forms.ModelForm):

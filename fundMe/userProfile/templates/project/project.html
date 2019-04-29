@@ -1,5 +1,6 @@
 {% extends "userProfile/base.html" %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block body_block %}
 
@@ -12,13 +13,261 @@
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-7 text-center">
                         <h2 class="heading">{{ project.title }}</h2>
-                        <p class="lead">by {{ project.user }}</p>
+                        <p class="lead">by {{ project.user.firstname }} {{ project.user.lastname }}</p>
+                        <!--<div>-->
+                        <!--<a href="{% url 'userProfile:create_project' %}"><input value="Start your project"-->
+                        <!--class="btn btn-primary"></a>-->
+                        <!--</div>-->
+
+
+                        <div class="progress custom-progress">
+                            <div class="progress-bar bg-warning" role="progressbar"
+                                 style="width: 20%"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="fund-raised d-block mb-5">$8,100 raised of $30,000</span>
+                        <p><a href="#" class="btn btn-primary btn-hover-white py-3 px-5" onclick="donate()">Donate
+                            Now</a></p>
+
+
                     </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="blog" class="site-section">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <p class="mb-4"><img src="{% static 'images/bg_1.jpg' %} " alt="" class="img-fluid"></p>
+                <img src="{% static 'images/image_10.jpg' %}" alt="" class="img-fluid">
+                </p>
+
+                <!--project date section-->
+                <div class="block-23">
+                    <div style="float:left">
+                        <span> Start date </span> <span class="icon-calendar"> <b>{{project.start_date}} </b> </span>
+                    </div>
+                    <div style="float:right">
+                        <span> End date </span> <span class="icon-calendar"> <b>{{project.end_date}} </b> </span>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+                <hr>
+
+                <div class="block-23">
+                    <h3><b>Project Details </b></h3>
+
+
+                    <p>{{project.details}}</p>
+                </div>
+
+                <div>
+
+                </div>
+
+                <div class="tag-widget post-tag-container mb-5 mt-5">
+                    <div class="tagcloud">
+                        <a href="#" class="tag-cloud-link">Charities</a>
+                        <a href="#" class="tag-cloud-link">Donation</a>
+                        <a href="#" class="tag-cloud-link">Child</a>
+                        <a href="#" class="tag-cloud-link">School</a>
+                    </div>
+                </div>
+
+
+                <div class="site-section fund-raisers">
+                    <div class="container">
+                        <div class="row mb-5">
+                            <div class="col-md-12 text-center">
+                                <h2>Project actions</h2>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <!--Donations Section-->
+                            <div class="col-md-6">
+                                <div class="person-donate text-center bg-light pt-4">
+                                    <img src="{% static 'images/money_4.png' %}" alt="Image placeholder"
+                                         class="img-fluid">
+                                    <div class="donate-info">
+                                        <h2>Donate</h2>
+
+                                        <hr>
+
+                                        <div class="donate-amount d-flex">
+                                            <div class="label">Raised Donations</div>
+                                            <div class="amount">$ {{total_donation.donation_amount__sum}}</div>
+                                        </div>
+                                        <br>
+                                        <div class="donate-amount d-flex">
+                                            <div class="label">Total Target</div>
+                                            <div class="amount">$ {{project.total_target}}</div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div>
+                                            <form enctype="multipart/form-data" method="POST">
+                                                {% csrf_token %}
+                                                {{ donation_form | crispy }}
+
+                                                <input class="btn btn-primary btn-hover-black py-3 px-5" type="submit"
+                                                       name="" value="Submit your donation">
+                                            </form>
+                                        </div>
+                                        <br>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Rating Section-->
+                            <div class="col-md-6">
+                                <div class="person-donate text-center bg-light pt-4">
+                                    <img src="{% static 'images/rating_1.png' %}" alt="Image placeholder"
+                                         class="img-fluid">
+                                    <div class="donate-info">
+                                        <h2>Rate this project</h2>
+
+                                        <hr>
+
+                                        <div class="donate-amount d-flex">
+                                            <div class="label">Average Rating</div>
+                                            <div class="amount">{{average_rating.user_rating__avg|floatformat:"0"}} <i>
+                                                /5 </i>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="donate-amount d-flex">
+                                            <div class="label">Your Rating</div>
+                                            <div class="amount">$ {{project.total_target}}</div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div>
+                                            <form enctype="multipart/form-data" method="POST">
+                                                {% csrf_token %}
+                                                {{ rate_project|crispy }}
+
+                                                <input class="btn btn-primary btn-hover-black py-3 px-5" type="submit"
+                                                       name="" value="Submit your rating">
+                                            </form>
+                                        </div>
+                                        <br>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Reports Section-->
+                            <div class="col-md-6">
+                                <div class="person-donate text-center bg-light pt-4">
+                                    <img src="{% static 'images/report_3.png' %}" alt="Image placeholder"
+                                         class="img-fluid">
+                                    <div class="donate-info">
+                                        <h2>Report this project</h2>
+                                        <div>
+                                            <form enctype="multipart/form-data" method="POST">
+                                                {% csrf_token %}
+                                                {{ report_form|crispy }}
+
+                                                <input class="btn btn-primary btn-hover-black py-3 px-5" type="submit"
+                                                       name="" value="Submit your report">
+                                            </form>
+                                        </div>
+                                        <br>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div> <!-- .section -->
+
+                <!--Comment Section-->
+                <div class="pt-5 mt-5">
+                    <h3 class="mb-5">Comments</h3>
+                    <ul class="comment-list">
+                        {% for comment in comments %}
+                        <!--add report to comment-->
+
+                        <li class="comment">
+                            <div class="vcard bio">
+                                <img src="{{ comment.user.profile_pic.url }}" ,
+                                     style="height:50px;width:50px;border-radius:50%">
+                            </div>
+                            <div class="comment-body">
+                                <h3>{{comment.user.firstname}} {{comment.user.lastname}}</h3>
+                                <div class="meta">January 9, 2018 at 2:21pm</div>
+                                <p>{{comment.comment_body}}</p>
+                                <p><a href="#" class="reply">Reply</a></p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- END comment-list -->
+
+
+                    <div class="comment-form-wrap pt-5">
+                        <h3 class="mb-5">Leave a comment</h3>
+                        <form enctype="multipart/form-data" method="POST" class="p-5 bg-light">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                {{ comment_form|crispy }}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div> <!-- .col-md-8 -->
+            <div class="col-md-4 sidebar">
+                <!--<div class="sidebar-box">-->
+                <!--<form action="#" class="search-form">-->
+                <!--<div class="form-group">-->
+                <!--<span class="icon fa fa-search"></span>-->
+                <!--<input type="text" class="form-control" placeholder="Type a keyword and hit enter">-->
+                <!--</div>-->
+                <!--</form>-->
+                <!--</div>-->
+
+                <div class="sidebar-box">
+                    <div class="categories">
+                        <h3>Category</h3>
+                        <li><a href="#">{{project.category}} </a></li>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3>Project Owner</h3>
+
+                    <img src="{{project.user.profile_pic.url}}" alt="Image placeholder" class="img-fluid mb-4 rounded">
+                    <h3>{{project.user.firstname }} {{ project.user.lastname }} </h3>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="container">
     <div class="jumbotron">
@@ -34,46 +283,45 @@
         {% if pictures is not None %}
         pictures:
         {% for picture in pictures %}
-        <img src="../../media/{{picture.project_picture}}"/>
+        <img src="{{picture.url}}"/>
         {% endfor %}
         {% endif %}
     </div>
 
-    <div class="jumbotron">
-        <form enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            {{ rate_project.as_p }}
-            <input type="submit" name="" value="Rate Project">
-        </form>
-    </div>
-
-    <div class="jumbotron">
-        <form enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            {{ report_form.as_p }}
-            <input type="submit" name="" value="Report Project">
-        </form>
-    </div>
-
-    <div class="jumbotron">
-        <form enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            {{ donation_form.as_p }}
-            <input type="submit" name="" value="Submit donation">
-        </form>
-    </div>
-
-    <div class="jumbotron">
-        {% for comment in comments %}
-        <p>{{comment.user}} : {{comment.comment_body}}</p>
-        <!--add report to comment-->
-        {% endfor %}
-        <form enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <input type="submit" name="" value="Submit donation">
-        </form>
-    </div>
 
 </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+
+
+
+    function donate(){
+            swal("Insert the amount you want to donate:", {
+          content: "input",
+           timer: 5000,
+        })
+        .then((value) => {
+        if (value==null)
+            swal(`You donated nothing JOHN SNOW..`);
+        else
+            swal(`You donated: ${value} $`);
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 {% endblock %}

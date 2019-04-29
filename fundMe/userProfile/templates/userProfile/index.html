@@ -128,7 +128,7 @@
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
-                            <p class="card-text">{{project.details}}</p>
+                            <p class="card-text">{{project.details | truncatewords:20}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
