@@ -93,7 +93,7 @@
 
             <div class="col-md-6 col-lg-3 mb-5">
                 <div class="person-donate text-center pt-4">
-                    <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5"> {{category.category}} </a></p>
+                    <p><a href= "{% url 'get_category_projects' category.id %}" class="btn btn-success btn-hover-white py-3 px-5"> {{category.category}} </a></p>
                 </div>
             </div>
 

@@ -20,9 +20,15 @@ from django.shortcuts import redirect
 
 
 def index(request):
-    latest_projects = Project.objects.all().order_by('start_date')[:5]
+    last_projects = Project.objects.all().order_by('start_date')[:5]
+    latest_projects = []
+    for project in last_projects:
+        latest_projects.append(add_project_details(project))
     categories = Categories.objects.all
-    featured_projects = FeaturedProject.objects.all()[:5]
+    admin_featured_projects = FeaturedProject.objects.all()[:5]
+    featured_projects = []
+    for project in admin_featured_projects:
+        featured_projects.append(add_project_details(project))
     return render(request, 'userProfile/index.html', {'latest_projects': latest_projects,
                                                       'categories': categories,
                                                       'featured_projects': featured_projects,
@@ -121,7 +127,7 @@ def activate(request, uidb64, token):
 
 
 
-# create new project
+#create new project
 @login_required
 def create_project(request):
     if request.method == 'POST':
@@ -175,8 +181,11 @@ def create_project(request):
 # Show all projects
 @login_required
 def show_projects(request):
-    projects = Project.objects.all
-    return render(request, 'project/index.html', {'projects': projects})
+    projects = Project.objects.all()
+    projectDetails = []
+    for project in projects:
+        projectDetails.append(add_project_details(project))
+    return render(request, 'project/index.html', {'projects': projectDetails})
 
 
 # @login_required
@@ -240,19 +249,9 @@ def show_projects(request):
 
 # show a single project
 @login_required
-def show_a_project_details(request, id):
-    project = get_object_or_404(Project, pk=id)
-    comments = ProjectComments.objects.filter(project=project)
-    pictures = ProjectPics.objects.filter(project=project)
-    total_donations = ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount"))
-    average_rating = ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating"))
-
-    return [project, comments, pictures, total_donations, average_rating]
-
-
-@login_required
 def show_a_project(request, id):
-    project_details = show_a_project_details(request, id)
+    project = get_object_or_404(Project, pk=id)
+    project_details = add_project_details(project)
     current_user = User.objects.get(id=request.user.id)
     current_user_profile = UserProfile.objects.filter(user=current_user)
 
@@ -293,15 +292,11 @@ def show_a_project(request, id):
         report_form = ReportProjectForm()
         rating_form= RateProjectForm()
     return render(request, 'project/project.html', {
-        'project': project_details[0],
+        'project': project_details,
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,
-        'comments': project_details[1],
-        'pictures': project_details[3],
-        'total_donation': project_details[3],
-        'rate_project': rating_form,
-        'average_rating': project_details[4]
+        'rate_project': rating_form
     })
 
 # # show a single project
@@ -335,15 +330,18 @@ def get_projects(request, username):
     projects = userprofile.project_set.all()
     projectDetails = []
     for project in projects:
-        # pictures = project.projectpics_set.all()
-        # comments = project.projectcomments_set.all()
-        p = ProjectDetail(project.id, project.user.id, project.category.id, project.title, project.details,
-                          project.start_date, project.end_date, project.total_target,
-                          ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
-                          ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
-        projectDetails.append(p)
+        projectDetails.append(add_project_details(project))
     return render(request, 'userProfile/projects.html', {'projects': projectDetails})
 
+
+def add_project_details(project):
+    # to access project pics
+    # project.projectpics_set.all()
+    projectInfo = ProjectDetail(project.id, project.user.id, project.category.id, project.title, project.details,
+                      project.start_date, project.end_date, project.total_target,
+                      ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
+                      ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
+    return projectInfo
 
 # get user's donations
 @login_required
@@ -353,6 +351,15 @@ def get_user_donations(request, username):
     donations = userprofile.projectdonations_set.all()
     return render(request, 'userProfile/donations.html', {'donations': donations})
 
+# get category's project
+@login_required
+def get_category_projects(request,id):
+    category = get_object_or_404(Categories, pk=id)
+    projects = category.project_set.all()
+    projectDetails = []
+    for project in projects:
+        projectDetails.append(add_project_details(project))
+    return render(request, 'Category/projects.html', {'category':category,'projects': projectDetails})
 
 
 def get_user_profile(request, username):
