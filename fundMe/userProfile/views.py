@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
-from .forms import UpdateProfile,UpdateUser
+from .forms import UpdateProfile, UpdateUser
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
 from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm, RateProjectForm
@@ -16,12 +16,19 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from .models import *
 from django.db.models import Sum, Avg
+from django.shortcuts import redirect
 
 
 def index(request):
-    latest_projects = Project.objects.all().order_by('start_date')[:5]
+    last_projects = Project.objects.all().order_by('start_date')[:5]
+    latest_projects = []
+    for project in last_projects:
+        latest_projects.append(add_project_details(project))
     categories = Categories.objects.all
-    featured_projects = FeaturedProject.objects.all()[:5]
+    admin_featured_projects = FeaturedProject.objects.all()[:5]
+    featured_projects = []
+    for project in admin_featured_projects:
+        featured_projects.append(add_project_details(project))
     return render(request, 'userProfile/index.html', {'latest_projects': latest_projects,
                                                       'categories': categories,
                                                       'featured_projects': featured_projects,
@@ -68,7 +75,7 @@ def register(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-             #registered = True
+            # registered = True
             user.is_active = False
             user.save()
             return HttpResponse('Please confirm your email address to complete the registration')
@@ -110,7 +117,7 @@ def activate(request, uidb64, token):
     except(TypeError, ValueError, OverflowError, UserProfile.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        #user.is_active = True
+        # user.is_active = True
         # return HttpResponseRedirect(reverse('index'))
         user.is_active = True
         user.save()
@@ -119,11 +126,11 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-
-#create new project
+# create new project
 @login_required
 def create_project(request):
     if request.method == 'POST':
+        print(request.user.id)
         project_form = ProjectForm(data=request.POST)
         project_pics_form = ProjectPicsForm(data=request.POST)
         project_tags_form = ProjectTagsForm(data=request.POST)
@@ -146,12 +153,13 @@ def create_project(request):
             if 'project_tag' in request.POST and request.POST['project_tag'] is not "":
                 project_tags.project = project
                 project_tags.save()
-            return render(request, 'userProfile/create_project.html', {
-                'project_form': project_form,
-                'project_pics_form': project_pics_form,
-                'project_tags_form': project_tags_form,
-                'errors': None
-            })
+            return redirect('/userProfile/' + current_user.username + '/projects/', request=request)
+            # return render(request, 'userProfile/create_project.html', {
+            #     'project_form': project_form,
+            #     'project_pics_form': project_pics_form,
+            #     'project_tags_form': project_tags_form,
+            #     'errors': None
+            # })
         else:
             return render(request, 'userProfile/create_project.html', {
                 'project_form': project_form,
@@ -179,53 +187,64 @@ def show_projects(request):
     return render(request, 'project/index.html', {'projects': projectDetails})
 
 
-@login_required
-def get_donation_form(request, project, current_user_profile):
-    donation_form = MakeDonationForm(data=request.POST)
-    if donation_form.is_valid():
-        donation = donation_form.save(commit=False)
-        donation.project = project
-        donation.user = current_user_profile.first()
-        donation.save()
-        donation_form = MakeDonationForm()
-    return donation_form
+# @login_required
+# def get_donation_form(request, project, current_user_profile):
+#     if request.method == 'POST':
+#         donation_form = MakeDonationForm(data=request.POST)
+#         if donation_form.is_valid():
+#             donation = donation_form.save(commit=False)
+#             donation.project = project
+#             donation.user = current_user_profile.first()
+#             donation.save()
+#             return MakeDonationForm()
+#     else:
+#         donation_form = MakeDonationForm()
+#     return donation_form
 
 
-@login_required
-def get_comment_form(request, project, current_user_profile):
-    comment_form = AddCommentForm(data=request.POST)
-    if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.project = project
-        comment.user = current_user_profile.first()
-        comment.save()
-        comment_form = AddCommentForm()
-    return comment_form
+# @login_required
+# def get_comment_form(request, project, current_user_profile):
+#     if request.method == 'POST':
+#         comment_form = AddCommentForm(data=request.POST)
+#         if comment_form.is_valid():
+#             comment = comment_form.save(commit=False)
+#             comment.project = project
+#             comment.user = current_user_profile.first()
+#             comment.save()
+#             return AddCommentForm()
+#     else:
+#         comment_form = AddCommentForm()
+#     return comment_form
 
 
-@login_required
-def get_report_form(request, project, current_user_profile):
-    report_form = ReportProjectForm(data=request.POST)
-    if report_form.is_valid():
-        report = report_form.save(commit=False)
-        report.project = project
-        report.user = current_user_profile.first()
-        report.save()
-        report_form = ReportProjectForm()
-    return report_form
+# @login_required
+# def get_report_form(request, project, current_user_profile):
+#     if request.method == 'POST':
+#         report_form = ReportProjectForm(data=request.POST)
+#         if report_form.is_valid():
+#             report = report_form.save(commit=False)
+#             report.project = project
+#             report.user = current_user_profile.first()
+#             report.save()
+#             return ReportProjectForm()
+#     else:
+#         report_form= ReportProjectForm()
+#     return report_form
 
 
-@login_required
-def get_rating_form(request, project, current_user_profile):
-    rating_form = RateProjectForm(data=request.POST)
-    if rating_form.is_valid():
-        rate = rating_form.save(commit=False)
-        rate.project = project
-        rate.user = current_user_profile.first()
-        rate.save()
-        rating_form = RateProjectForm()
-    return rating_form
-
+# @login_required
+# def get_rating_form(request, project, current_user_profile):
+#     if request.method == 'POST':
+#         rating_form = RateProjectForm(data=request.POST)
+#         if rating_form.is_valid():
+#             rate = rating_form.save(commit=False)
+#             rate.project = project
+#             rate.user = current_user_profile.first()
+#             rate.save()
+#             return RateProjectForm()
+#     else:
+#         rating_form = RateProjectForm()
+#     return rating_form
 
 # show a single project
 @login_required
@@ -234,21 +253,75 @@ def show_a_project(request, id):
     project_details = add_project_details(project)
     current_user = User.objects.get(id=request.user.id)
     current_user_profile = UserProfile.objects.filter(user=current_user)
-    donation_form = get_donation_form(request, project, current_user_profile)
-    comment_form = get_comment_form(request, project, current_user_profile)
-    report_form = get_report_form(request, project, current_user_profile)
-    rating_form = get_rating_form(request, project, current_user_profile)
-    # replace comment with project_details.projectcomments_set.all
-    # replace pictures with project_details.projectpics_set.all
-    # replace average_rating with project_details.average_rating
-    # replace total_donation with project_details.total_donation
+
+    if request.method == 'POST':
+        donation_form = MakeDonationForm(data=request.POST)
+        if donation_form.is_valid():
+            donation = donation_form.save(commit=False)
+            donation.project = project
+            donation.user = current_user_profile.first()
+            donation.save()
+            donation_form = MakeDonationForm()
+            return HttpResponseRedirect(reverse('show_project', args=[id]))
+        comment_form = AddCommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.project = project
+            comment.user = current_user_profile.first()
+            comment.save()
+            return HttpResponseRedirect(reverse('show_project', args=[id]))
+        report_form = ReportProjectForm(data=request.POST)
+        if report_form.is_valid():
+            report = report_form.save(commit=False)
+            report.project = project
+            report.user = current_user_profile.first()
+            report.save()
+            return HttpResponseRedirect(reverse('show_project', args=[id]))
+        rating_form = RateProjectForm(data=request.POST)
+        if rating_form.is_valid():
+            rate = rating_form.save(commit=False)
+            rate.project = project
+            rate.user = current_user_profile.first()
+            rate.save()
+            report.save()
+            return HttpResponseRedirect(reverse('show_project', args=[id]))
+    else:
+        donation_form = MakeDonationForm()
+        comment_form = AddCommentForm()
+        report_form = ReportProjectForm()
+        rating_form = RateProjectForm()
     return render(request, 'project/project.html', {
         'project': project_details,
+        'project1': project,
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,
         'rate_project': rating_form
     })
+
+
+# # show a single project
+# @login_required
+# def show_a_project(request, id):
+#     project_details = show_a_project_details(request, id)
+#     current_user = User.objects.get(id=request.user.id)
+#     current_user_profile = UserProfile.objects.filter(user=current_user)
+#     donation_form = get_donation_form(request, project_details[0], current_user_profile)
+#     comment_form = get_comment_form(request, project_details[0], current_user_profile)
+#     report_form = get_report_form(request, project_details[0], current_user_profile)
+#     rating_form = get_rating_form(request, project_details[0], current_user_profile)
+#     return render(request, 'project/project.html', {
+#         'project': project_details[0],
+#         'donation_form': donation_form,
+#         'comment_form': comment_form,
+#         'report_form': report_form,
+#         'comments': project_details[1],
+#         'pictures': project_details[3],
+#         'total_donation': project_details[3],
+#         'rate_project': rating_form,
+#         'average_rating': project_details[4]
+#     })
+#         return HttpResponseRedirect(reverse('show_project', args=[id]))
 
 # show user's projects
 @login_required
@@ -266,10 +339,11 @@ def add_project_details(project):
     # to access project pics
     # project.projectpics_set.all()
     projectInfo = ProjectDetail(project.id, project.user.id, project.category.id, project.title, project.details,
-                      project.start_date, project.end_date, project.total_target,
-                      ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
-                      ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
+                                project.start_date, project.end_date, project.total_target,
+                                ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
+                                ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
     return projectInfo
+
 
 # get user's donations
 @login_required
@@ -279,33 +353,35 @@ def get_user_donations(request, username):
     donations = userprofile.projectdonations_set.all()
     return render(request, 'userProfile/donations.html', {'donations': donations})
 
+
 # get category's project
 @login_required
-def get_category_projects(request,id):
+def get_category_projects(request, id):
     category = get_object_or_404(Categories, pk=id)
     projects = category.project_set.all()
     projectDetails = []
     for project in projects:
         projectDetails.append(add_project_details(project))
-    return render(request, 'Category/projects.html', {'category':category,'projects': projectDetails})
+    return render(request, 'Category/projects.html', {'category': category, 'projects': projectDetails})
 
 
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
-    return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
-
+    return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
 
 
 def update_user_profile(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
     if request.method == 'POST':
-        profileform = UpdateProfile(data=request.POST, files=request.FILES, instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
-                                                                                                'lastname': userprofile.lastname,
-                                                                                                'firstname': userprofile.firstname,
-                                                                                                'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-        userform = UpdateUser(data=request.POST, instance=request.user, initial={'username': user.username, 'email': user.email})
+        profileform = UpdateProfile(data=request.POST, files=request.FILES, instance=request.user.userprofile,
+                                    initial={'phone': userprofile.phone, 'country': userprofile.country,
+                                             'lastname': userprofile.lastname,
+                                             'firstname': userprofile.firstname,
+                                             'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
+        userform = UpdateUser(data=request.POST, instance=request.user,
+                              initial={'username': user.username, 'email': user.email})
 
         if userform.is_valid() and profileform.is_valid():
             updatedprofile = profileform.save(commit=False)
@@ -314,11 +390,12 @@ def update_user_profile(request, username):
             updatedprofile.save()
             return render(request, 'userProfile/index.html', {"user": user, "userprofile": userprofile})
     else:
-        profileform = UpdateProfile(instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
+        profileform = UpdateProfile(instance=request.user.userprofile,
+                                    initial={'phone': userprofile.phone, 'country': userprofile.country,
                                              'lastname': userprofile.lastname,
                                              'firstname': userprofile.firstname,
                                              'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-        userform = UpdateUser( instance=request.user, initial={'username': user.username, 'email': user.email})
+        userform = UpdateUser(instance=request.user, initial={'username': user.username, 'email': user.email})
     context = {
         "userform": userform,
         "profileform": profileform}
@@ -330,9 +407,9 @@ def delete_user_profile(request, username):
     userprofile = UserProfile.objects.get(user=user)
     logout(request)
     try:
-      projects = Project.objects.get(user=userprofile)
+        projects = Project.objects.get(user=userprofile)
     except(TypeError, ValueError, OverflowError, Project.DoesNotExist):
-      projects = None
+        projects = None
 
     if projects is not None:
         projects.delete()
@@ -346,8 +423,7 @@ class ProjectDetail(Project):
     def __init__(self, projectId, user, category, title, details, start_date, end_date, total_target, total_donations,
                  average_rating):
         Project.__init__(self, projectId, user, category, title, details, start_date, end_date, total_target)
-        self.total_donations = 0 if total_donations['donation_amount__sum'] is None else float(total_donations['donation_amount__sum'])
+        self.total_donations = 0 if total_donations['donation_amount__sum'] is None else float(
+            total_donations['donation_amount__sum'])
         self.average_rating = average_rating['user_rating__avg']
-        self.percentage = "{0:.2f}".format((self.total_donations/total_target)*100)
-
-
+        self.percentage = "{0:.2f}".format((self.total_donations / total_target) * 100)
