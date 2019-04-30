@@ -41,6 +41,8 @@
                 <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+                <li><input type="text" name="searchData" id="searchData" style="width:150px"></li>
+                <li><img src="{% static 'images/search.png' %}" width="30px" id="search"></li>
 
                 {% if user.is_authenticated %}
 
@@ -49,7 +51,7 @@
                 <li class="nav-item"><a class="nav-link"
                                         href="{% url 'userProfile:update_user_profile' user.username %}">Welcome,
                     {{user.userprofile.firstname}}</a></li>
-                <li class="nav-item "><a href="{{ user.username}}/projects " class="nav-link">Projects</a></li>
+                <li class="nav-item "><a href="{{ current_user.username}}/projects " class="nav-link">Projects</a></li>
 
                 <li class="nav-item">
                           {% if user.userprofile.profile_pic %}
@@ -132,7 +134,14 @@
                 stroke="#F96D00"/>
     </svg>
 </div>
-
+<script>
+    document.getElementById("search").addEventListener("click", search)
+    function search(){
+        data=document.getElementById("searchData").value;
+        if (data)
+            window.location.replace('/search/'+data);
+    }
+</script>
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
