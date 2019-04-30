@@ -259,7 +259,7 @@ def show_a_project(request, id):
         donation_form = MakeDonationForm(data=request.POST)
         if donation_form.is_valid():
             donation = donation_form.save(commit=False)
-            donation.project = project_details[0]
+            donation.project = project
             donation.user = current_user_profile.first()
             donation.save()
             donation_form = MakeDonationForm()
@@ -267,21 +267,21 @@ def show_a_project(request, id):
         comment_form = AddCommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.project = project_details[0]
+            comment.project = project
             comment.user = current_user_profile.first()
             comment.save()
             return HttpResponseRedirect(reverse('show_project', args=[id]))
         report_form = ReportProjectForm(data=request.POST)
         if report_form.is_valid():
             report = report_form.save(commit=False)
-            report.project = project_details[0]
+            report.project = project
             report.user = current_user_profile.first()
             report.save()
             return HttpResponseRedirect(reverse('show_project', args=[id]))
         rating_form = RateProjectForm(data=request.POST)
         if rating_form.is_valid():
             rate = rating_form.save(commit=False)
-            rate.project = project_details[0]
+            rate.project = project
             rate.user = current_user_profile.first()
             rate.save()
             report.save()
