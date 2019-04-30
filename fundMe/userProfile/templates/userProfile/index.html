@@ -54,17 +54,18 @@
                     {% for project in featured_projects %}
 
                     <div class="card fundraise-item">
-                        <a href="#"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
+                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
                                          alt="Image placeholder"></a>
                         <div class="card-body">
-                            <h3 class="card-title"><a href="#">{{project}}</a></h3>
-                            <p class="card-text">{{project}}</p>
+                            <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
+                            </h3>
+                            <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{project.percentage}}%"
                                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <span class="fund-raised d-block">$8,100 raised of ${{project}}</span>
+                            <span class="fund-raised d-block">$ {{ project.total_donations }} raised of ${{project.total_target}}</span>
                         </div>
                     </div>
 
@@ -124,18 +125,18 @@
 
 
                     <div class="card fundraise-item">
-                        <a href="#"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
+                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
                                          alt="Image placeholder"></a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
-                            <p class="card-text">{{project.details | truncatewords:20}}</p>
+                            <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{project.percentage}}%"
                                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <span class="fund-raised d-block">$8,100 raised of ${{project.total_target}}</span>
+                            <span class="fund-raised d-block"> <b> $ {{ project.total_donations }} </b> raised of $ {{project.total_target}}</span>
                         </div>
                     </div>
 

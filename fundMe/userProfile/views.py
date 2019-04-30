@@ -27,11 +27,11 @@ def index(request):
     categories = Categories.objects.all
     admin_featured_projects = FeaturedProject.objects.all()[:5]
     featured_projects = []
-    for project in admin_featured_projects:
-        featured_projects.append(add_project_details(project))
+    # for project in admin_featured_projects:
+        # featured_projects.append(add_project_details(project))
     return render(request, 'userProfile/index.html', {'latest_projects': latest_projects,
                                                       'categories': categories,
-                                                      'featured_projects': featured_projects,
+                                                      'featured_projects': admin_featured_projects,
                                                       })
 
 
@@ -293,7 +293,11 @@ def show_a_project(request, id):
         rating_form= RateProjectForm()
     return render(request, 'project/project.html', {
         'project': project_details,
+<<<<<<< HEAD
         'project1': project,
+=======
+        'project1':project,
+>>>>>>> 949797a8478bd19e2dc0e38a8c878e61834f6e0c
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,
