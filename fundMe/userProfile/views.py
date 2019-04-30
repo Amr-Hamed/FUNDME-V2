@@ -415,6 +415,24 @@ def delete_user_profile(request, username):
     return HttpResponseRedirect(reverse('index'))
 
 
+def search(request,data):
+    title_matched= Project.objects.filter(title__icontains=data)
+    details_matched = Project.objects.filter(details__icontains=data)
+    tags=ProjectTags.objects.filter(project_tag__icontains=data)
+    projects = []
+    for tag in tags:
+        taged_matched = tag.project
+        projects.append(add_project_details(taged_matched))
+    for project in title_matched:
+        projects.append(add_project_details(project))
+    for project in details_matched:
+        projects.append(add_project_details(project))
+    return render(request, 'project/index.html', {'projects': projects})
+
+
+
+
+
 class ProjectDetail(Project):
     def __init__(self, projectId, user, category, title, details, start_date, end_date, total_target, total_donations,
                  average_rating):

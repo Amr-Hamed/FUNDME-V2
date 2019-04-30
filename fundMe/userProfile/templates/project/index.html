@@ -19,7 +19,13 @@
  total_donations : {{ project.total_donations }}<br>
 
  average_rating : {{project.average_rating}}<br>
- percentage : {{project.percentage}}
+ percentage : {{project.percentage}}<br>
+ {% if project.projecttags_set.all  %}
+        tags: {% for tag in project.projecttags_set.all %}
+          pic {{tag.project_tag}}
+        {% endfor %}<br> <br>
+ {% endif %}
+
  {% for p in project.projectpics_set.all %}
   pic {{p.project_picture}}
 {% endfor %}

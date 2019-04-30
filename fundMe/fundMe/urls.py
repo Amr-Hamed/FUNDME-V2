@@ -19,20 +19,18 @@ from userProfile import views
 from django.conf import settings  # new
 from django.conf.urls.static import static  # new
 
-
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('special/', views.special, name='special'),
     path('userProfile/', include('userProfile.urls')),
     path('logout/', views.user_logout, name='logout'),
-    path('projects/',views.show_projects , name="projects"),
+    path('projects/', views.show_projects, name="projects"),
     path('project/<int:id>', views.show_a_project, name="show_project"),
     path('<str:username>/projects/', views.get_projects, name='user_projects'),
     path('category/<int:id>', views.get_category_projects, name="get_category_projects"),
-    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('search/<str:data>', views.search, name="search_projects"),
+    path('ratings/', include('star_ratings.urls', namespace='ratings'))
 
 ]
 

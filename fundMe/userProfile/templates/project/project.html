@@ -260,13 +260,18 @@
         total_target: {{project.total_target}} <br>
         Description : {{project.details}} <br>
         Total donations : {{project.total_donations}} <br>
-        Average_rating : {{project.average_rating}} <br> <br> <br>
+        Average_rating : {{project.average_rating}} <br>
+        {% if project.projecttags_set.all %}
+        tags: {% for tag in project.projecttags_set.all %}
+          pic {{tag.project_tag}}
+        {% endfor %}<br> <br>
+        {% endif %}
 
-        {% if project.projectpics_set.all is not None %}
+        {% if project.projectpics_set.all  %}
         pictures:
 
         {% for picture in project.projectpics_set.all %}
-        {{ picture }}
+        {{ picture.project_picture }}
         <img src="{{picture.url}}"/>
         {% endfor %}
         {% endif %}
