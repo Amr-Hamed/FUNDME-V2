@@ -7,7 +7,7 @@
 
     <title>Base</title>
 
-      <!--for ratings-->
+    <!--for ratings-->
 
     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
     <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
@@ -43,12 +43,23 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-
+                <li class="nav-item"><input type="text" placeholder="Type a keyword .." name="searchData"
+                                            id="searchData" style="width:250px; margin-top:20px"></li>
+                <li class="nav-item"><img src="{% static 'images/search.png' %}" width="30px" style="margin-top:20px" id="search"></li>
                 <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
-                <li><input type="text" name="searchData" id="searchData" style="width:150px"></li>
-                <li><img src="{% static 'images/search.png' %}" width="30px" id="search"></li>
+
+
+                <!--<div class="sidebar-box">-->
+                <!--<form action="#" class="search-form">-->
+                <!--<div class="form-group">-->
+                <!--<span class="icon fa fa-search"></span>-->
+                <!--<input type="text" class="form-control" placeholder="Type a keyword and hit enter">-->
+                <!--</div>-->
+                <!--</form>-->
+                <!--</div>-->
+
 
                 {% if user.is_authenticated %}
 
@@ -60,10 +71,10 @@
                 <li class="nav-item "><a href="/{{user.username}}/projects " class="nav-link">Projects</a></li>
 
                 <li class="nav-item">
-                          {% if user.userprofile.profile_pic %}
+                    {% if user.userprofile.profile_pic %}
                     <img src="{{ user.userprofile.profile_pic.url }}" ,
                          style="height:40px;width:40px;border-radius:50%;margin-top:50%">
-                          {% endif %}
+                    {% endif %}
                 </li>
 
                 {% else %}
@@ -95,41 +106,39 @@
 {% endblock %}
 
 
-  <!--<footer class="footer">-->
-    <!--<div class="container">-->
-      <!--<div class="row mb-5">-->
-        <!--<div class="col-md-6 col-lg-4">-->
-          <!--<h3 class="heading-section">About Us</h3>-->
-          <!--<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>-->
-          <!--<p><a href="#" class="btn btn-primary px-4 py-3">Join Volunteer</a></p>-->
-        <!--</div>-->
-                <!--<div class="col-md-6 col-lg-4">-->
-          <!--<div class="block-23">-->
-            <!--<h3 class="heading-section">Contact Info</h3>-->
-              <!--<ul>-->
-                <!--<li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>-->
-                <!--<li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 01010 8595 07</span></a></li>-->
-                <!--<li><a href="#"><span class="icon icon-envelope"></span><span class="text">fundmewebsite@gmail.com </span></a></li>-->
-                <!--<li><span class="icon icon-clock-o"></span><span class="text">Monday &mdash; Friday 8:00am - 5:00pm</span></li>-->
-              <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
+<!--<footer class="footer">-->
+<!--<div class="container">-->
+<!--<div class="row mb-5">-->
+<!--<div class="col-md-6 col-lg-4">-->
+<!--<h3 class="heading-section">About Us</h3>-->
+<!--<p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>-->
+<!--<p><a href="#" class="btn btn-primary px-4 py-3">Join Volunteer</a></p>-->
+<!--</div>-->
+<!--<div class="col-md-6 col-lg-4">-->
+<!--<div class="block-23">-->
+<!--<h3 class="heading-section">Contact Info</h3>-->
+<!--<ul>-->
+<!--<li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>-->
+<!--<li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 01010 8595 07</span></a></li>-->
+<!--<li><a href="#"><span class="icon icon-envelope"></span><span class="text">fundmewebsite@gmail.com </span></a></li>-->
+<!--<li><span class="icon icon-clock-o"></span><span class="text">Monday &mdash; Friday 8:00am - 5:00pm</span></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
 
 
-      <!--</div>-->
-      <!--<div class="row pt-5">-->
-        <!--<div class="col-md-12 text-center">-->
-          <!--<p>-->
-            <!--&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
-            <!--Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>-->
-            <!--&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
-          <!--</p>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</footer>-->
-
-
+<!--</div>-->
+<!--<div class="row pt-5">-->
+<!--<div class="col-md-12 text-center">-->
+<!--<p>-->
+<!--&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
+<!--Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>-->
+<!--&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
+<!--</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</footer>-->
 
 
 <!-- loader -->
@@ -147,6 +156,8 @@
         if (data)
             window.location.replace('/search/'+data);
     }
+
+
 </script>
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>

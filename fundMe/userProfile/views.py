@@ -154,7 +154,7 @@ def create_project(request):
             if 'project_tag' in request.POST and request.POST['project_tag'] is not "":
                 project_tags.project = project
                 project_tags.save()
-            return redirect('/userProfile/'+current_user.username+'/projects/', request=request)
+            return redirect('/'+current_user.username+'/projects/', request=request)
             # return render(request, 'userProfile/create_project.html', {
             #     'project_form': project_form,
             #     'project_pics_form': project_pics_form,
