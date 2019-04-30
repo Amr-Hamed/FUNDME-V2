@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
-from .forms import UpdateProfile, UpdateUser
+from .forms import UpdateProfile,UpdateUser
 
 from .forms import ProjectForm, ProjectPicsForm, ProjectTagsForm
 from .forms import UserForm, UserProfileInfoForm, MakeDonationForm, AddCommentForm, ReportProjectForm, RateProjectForm
@@ -75,7 +75,7 @@ def register(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-            # registered = True
+             #registered = True
             user.is_active = False
             user.save()
             return HttpResponse('Please confirm your email address to complete the registration')
@@ -117,7 +117,7 @@ def activate(request, uidb64, token):
     except(TypeError, ValueError, OverflowError, UserProfile.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        # user.is_active = True
+        #user.is_active = True
         # return HttpResponseRedirect(reverse('index'))
         user.is_active = True
         user.save()
@@ -126,7 +126,8 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-# create new project
+
+#create new project
 @login_required
 def create_project(request):
     if request.method == 'POST':
@@ -153,7 +154,7 @@ def create_project(request):
             if 'project_tag' in request.POST and request.POST['project_tag'] is not "":
                 project_tags.project = project
                 project_tags.save()
-            return redirect('/userProfile/' + current_user.username + '/projects/', request=request)
+            return redirect('/userProfile/'+current_user.username+'/projects/', request=request)
             # return render(request, 'userProfile/create_project.html', {
             #     'project_form': project_form,
             #     'project_pics_form': project_pics_form,
@@ -289,16 +290,14 @@ def show_a_project(request, id):
         donation_form = MakeDonationForm()
         comment_form = AddCommentForm()
         report_form = ReportProjectForm()
-        rating_form = RateProjectForm()
+        rating_form= RateProjectForm()
     return render(request, 'project/project.html', {
         'project': project_details,
-        'project1': project,
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,
         'rate_project': rating_form
     })
-
 
 # # show a single project
 # @login_required
@@ -339,11 +338,10 @@ def add_project_details(project):
     # to access project pics
     # project.projectpics_set.all()
     projectInfo = ProjectDetail(project.id, project.user.id, project.category.id, project.title, project.details,
-                                project.start_date, project.end_date, project.total_target,
-                                ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
-                                ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
+                      project.start_date, project.end_date, project.total_target,
+                      ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount")),
+                      ProjectRatings.objects.filter(project=project).aggregate(Avg("user_rating")))
     return projectInfo
-
 
 # get user's donations
 @login_required
@@ -353,35 +351,33 @@ def get_user_donations(request, username):
     donations = userprofile.projectdonations_set.all()
     return render(request, 'userProfile/donations.html', {'donations': donations})
 
-
 # get category's project
 @login_required
-def get_category_projects(request, id):
+def get_category_projects(request,id):
     category = get_object_or_404(Categories, pk=id)
     projects = category.project_set.all()
     projectDetails = []
     for project in projects:
         projectDetails.append(add_project_details(project))
-    return render(request, 'Category/projects.html', {'category': category, 'projects': projectDetails})
+    return render(request, 'Category/projects.html', {'category':category,'projects': projectDetails})
 
 
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
-    return render(request, 'userProfile/user_profile.html', {"user": user, "userprofile": userprofile})
+    return render(request, 'userProfile/user_profile.html', {"user":user, "userprofile":userprofile})
+
 
 
 def update_user_profile(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
     if request.method == 'POST':
-        profileform = UpdateProfile(data=request.POST, files=request.FILES, instance=request.user.userprofile,
-                                    initial={'phone': userprofile.phone, 'country': userprofile.country,
-                                             'lastname': userprofile.lastname,
-                                             'firstname': userprofile.firstname,
-                                             'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-        userform = UpdateUser(data=request.POST, instance=request.user,
-                              initial={'username': user.username, 'email': user.email})
+        profileform = UpdateProfile(data=request.POST, files=request.FILES, instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
+                                                                                                'lastname': userprofile.lastname,
+                                                                                                'firstname': userprofile.firstname,
+                                                                                                'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
+        userform = UpdateUser(data=request.POST, instance=request.user, initial={'username': user.username, 'email': user.email})
 
         if userform.is_valid() and profileform.is_valid():
             updatedprofile = profileform.save(commit=False)
@@ -390,12 +386,11 @@ def update_user_profile(request, username):
             updatedprofile.save()
             return render(request, 'userProfile/index.html', {"user": user, "userprofile": userprofile})
     else:
-        profileform = UpdateProfile(instance=request.user.userprofile,
-                                    initial={'phone': userprofile.phone, 'country': userprofile.country,
+        profileform = UpdateProfile(instance=request.user.userprofile, initial={'phone': userprofile.phone, 'country': userprofile.country,
                                              'lastname': userprofile.lastname,
                                              'firstname': userprofile.firstname,
                                              'birthday': userprofile.birthday, 'profile_pic': userprofile.profile_pic})
-        userform = UpdateUser(instance=request.user, initial={'username': user.username, 'email': user.email})
+        userform = UpdateUser( instance=request.user, initial={'username': user.username, 'email': user.email})
     context = {
         "userform": userform,
         "profileform": profileform}
@@ -407,9 +402,9 @@ def delete_user_profile(request, username):
     userprofile = UserProfile.objects.get(user=user)
     logout(request)
     try:
-        projects = Project.objects.get(user=userprofile)
+      projects = Project.objects.get(user=userprofile)
     except(TypeError, ValueError, OverflowError, Project.DoesNotExist):
-        projects = None
+      projects = None
 
     if projects is not None:
         projects.delete()
@@ -423,7 +418,6 @@ class ProjectDetail(Project):
     def __init__(self, projectId, user, category, title, details, start_date, end_date, total_target, total_donations,
                  average_rating):
         Project.__init__(self, projectId, user, category, title, details, start_date, end_date, total_target)
-        self.total_donations = 0 if total_donations['donation_amount__sum'] is None else float(
-            total_donations['donation_amount__sum'])
+        self.total_donations = 0 if total_donations['donation_amount__sum'] is None else float(total_donations['donation_amount__sum'])
         self.average_rating = average_rating['user_rating__avg']
-        self.percentage = "{0:.2f}".format((self.total_donations / total_target) * 100)
+        self.percentage = "{0:.2f}".format((self.total_donations/total_target)*100)
