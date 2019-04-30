@@ -267,15 +267,25 @@
         {% endfor %}<br> <br>
         {% endif %}
 
-        {% if project.projectpics_set.all  %}
-        pictures:
+{{ project.projectpics. }}
 
+
+    {% if project.projectpics_set.all is not None %}
+        pictures:
         {% for picture in project.projectpics_set.all %}
-        {{ picture.project_picture }}
-        <img src="{{picture.url}}"/>
+        {% if forloop.counter == 1  %}
+
+         {{ picture.project_picture.url }}
+                <img src="{{picture.project_picture.url}}"/>
+
+        {% endif %}
+
         {% endfor %}
         {% endif %}
     </div>
+
+
+
 
 
 </div>

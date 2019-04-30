@@ -293,6 +293,7 @@ def show_a_project(request, id):
         rating_form= RateProjectForm()
     return render(request, 'project/project.html', {
         'project': project_details,
+        'project1': project,
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,
