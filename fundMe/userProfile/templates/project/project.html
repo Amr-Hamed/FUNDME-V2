@@ -1,6 +1,7 @@
 {% extends "userProfile/base.html" %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load ratings %}
 
 {% block body_block %}
 
@@ -87,7 +88,7 @@
                     <div class="container">
                         <div class="row mb-5">
                             <div class="block-23">
-                                <h3> <b>Project Actions </b></h3>
+                                <h3><b>Project Actions </b></h3>
                             </div>
                         </div>
 
@@ -140,29 +141,12 @@
 
                                         <hr>
 
-                                        <div class="donate-amount d-flex">
-                                            <div class="label">Average Rating</div>
-                                            <div class="amount">{{project.average_rating}} <i>
-                                                /5 </i>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="donate-amount d-flex">
-                                            <div class="label">Your Rating</div>
-                                            <div class="amount">$ {{project.total_target}}</div>
+                                        <div>
+                                            {% ratings project1 %}
                                         </div>
 
                                         <hr>
 
-                                        <div>
-                                            <form enctype="multipart/form-data" method="POST">
-                                                {% csrf_token %}
-                                                {{ rate_project|crispy }}
-
-                                                <input class="btn btn-primary btn-hover-black py-3 px-5" type="submit"
-                                                       name="" value="Submit your rating">
-                                            </form>
-                                        </div>
                                         <br>
 
                                     </div>
@@ -249,13 +233,13 @@
 
                 <div class="sidebar-box">
                     <div class="categories">
-                        <h3> <b> Category </b></h3>
+                        <h3><b> Category </b></h3>
                         <li><a href="#">{{project.category}} </a></li>
                     </div>
                 </div>
 
                 <div class="sidebar-box">
-                    <h3> <b> Project Owner </b></h3>
+                    <h3><b> Project Owner </b></h3>
 
                     <img src="{{project.user.profile_pic.url}}" alt="Image placeholder" class="img-fluid mb-4 rounded">
                     <h3 class="text-center">{{project.user.firstname }} {{ project.user.lastname }} </h3>
@@ -314,6 +298,7 @@
             swal(`You donated: ${value} $`);
         });
     }
+
 
 
 
