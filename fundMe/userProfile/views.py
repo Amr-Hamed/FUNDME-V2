@@ -429,7 +429,7 @@ def search(request,data):
         projects.append(add_project_details(project))
     for project in details_matched:
         projects.append(add_project_details(project))
-    return render(request, 'project/index.html', {'projects': projects})
+    return render(request, 'project/search.html', {'projects': projects})
 
 
 

@@ -35,7 +35,8 @@
                 {{ project_form|crispy }}
                 <!--            {{ project_pics_form.as_p }}-->
                 <label> Project pictures </label> <br>
-                <input type="file" name="project_pictures" multiple>
+
+                <input type="file" name="project_pictures" required multiple>
                 {{ project_tags_form|crispy }}
                 <input class="btn btn-primary py-3 px-5" style="width:50%;margin-left: 25%;margin-top:10% "
                        type="submit" name="" value="Submit">
