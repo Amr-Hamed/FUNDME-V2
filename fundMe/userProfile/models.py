@@ -36,7 +36,7 @@ class Project(models.Model):
     details = models.TextField(max_length=300, null=True)
     start_date = models.DateField(default=timezone.now, null=True)
     end_date = models.DateField(default=timezone.now, null=True)
-    total_target = models.BigIntegerField(default=1, null=True)
+    total_target = models.BigIntegerField(default=10, null=True)
     ratings = GenericRelation(Rating, related_query_name='project')
 
     # def __init__(self, id, user, category, title, details, start_date, end_date, total_target):

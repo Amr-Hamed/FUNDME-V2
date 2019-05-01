@@ -74,6 +74,7 @@ class PasswordForm(forms.ModelForm):
 
 
 class ProjectForm(forms.ModelForm):
+    total_target = forms.IntegerField(required=True, min_value=1)
     class Meta:
         model = Project
         details = forms.CharField(widget=forms.Textarea)
@@ -81,7 +82,7 @@ class ProjectForm(forms.ModelForm):
 
 
 class ProjectPicsForm(forms.ModelForm):
-    project_picture = forms.ImageField(required=True)
+    project_picture = forms.ImageField(required=False)
 
     class Meta:
         model = ProjectPics
