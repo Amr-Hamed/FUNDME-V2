@@ -21,6 +21,7 @@ from django.shortcuts import redirect
 
 def index(request):
     last_projects = Project.objects.all().order_by('start_date')[:5]
+    rated_projects = Project.objects.filter(ratings__isnull=False).order_by('-ratings__average')[:5]
     latest_projects = []
     for project in last_projects:
         latest_projects.append(add_project_details(project))
@@ -32,6 +33,7 @@ def index(request):
     return render(request, 'userProfile/index.html', {'latest_projects': latest_projects,
                                                       'categories': categories,
                                                       'featured_projects': admin_featured_projects,
+                                                      'rated_projects': rated_projects,
                                                       })
 
 
@@ -293,7 +295,7 @@ def show_a_project(request, id):
         rating_form= RateProjectForm()
     return render(request, 'project/project.html', {
         'project': project_details,
-        'project1':project,
+        'project1': project,
         'donation_form': donation_form,
         'comment_form': comment_form,
         'report_form': report_form,

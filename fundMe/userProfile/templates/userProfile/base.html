@@ -45,7 +45,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><input type="text" placeholder="Type a keyword .." name="searchData"
                                             id="searchData" style="width:250px; margin-top:20px"></li>
-                <li class="nav-item"><img src="{% static 'images/search.png' %}" width="30px" style="margin-top:20px" id="search"></li>
+                <li class="nav-item"><img src="{% static 'images/search.png' %}" width="30px" style="margin-top:20px"
+                                          id="search"></li>
                 <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
@@ -97,6 +98,9 @@
 {% endblock %}
 
 {% block categories%}
+{% endblock %}
+
+{% block rated_projects %}
 {% endblock %}
 
 {% block latest_projects %}
@@ -156,6 +160,7 @@
         if (data)
             window.location.replace('/search/'+data);
     }
+
 
 
 </script>

@@ -72,16 +72,20 @@
                         {% csrf_token %}
                         {{ userform|crispy }}
                         {{ profileform|crispy }}
-                        <input class="btn btn-success py-3 px-5" style="width:50%;margin-left: 25%;margin-top:10% "
-                               type="submit" name="" value="Confirm UPDATES">
+                        <br>
+                        <input class="btn btn-success py-3 px-5" style="width:50%;margin-left: 25%;"
+                               type="submit" name="" value="Confirm your UPDATES">
+
                     </form>
+                    <hr>
+                    <a href="delete" class="btn btn-danger py-3 px-5"
+                       style="width:50%;margin-left: 25%;" onclick="">Delete your account</a>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen">
     <svg class="circular" width="48px" height="48px">
@@ -107,6 +111,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="{% static 'js/google-map.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 </body>
 </html>

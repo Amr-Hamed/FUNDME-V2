@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import UserProfile, ProjectDonations, ProjectComments, ProjectReports
 from django.contrib.auth.models import User
 
@@ -79,7 +81,7 @@ class ProjectForm(forms.ModelForm):
 
 
 class ProjectPicsForm(forms.ModelForm):
-    project_picture = forms.ImageField(required=False)
+    project_picture = forms.ImageField(required=True)
 
     class Meta:
         model = ProjectPics
