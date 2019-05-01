@@ -21,10 +21,10 @@
 
                             {% if not user.is_authenticated %}
                             <a href="{% url 'userProfile:user_login' %}"><input value="Start your project"
-                                                                              class="btn btn-primary"></a>
+                                                                                class="btn btn-primary"></a>
                             {% else %}
                             <a href="{% url 'userProfile:create_project' %}"><input value="Start your project"
-                                                                              class="btn btn-primary"></a>
+                                                                                    class="btn btn-primary"></a>
                             {% endif %}
                         </div>
                     </div>
@@ -54,15 +54,17 @@
                     {% for project in featured_projects %}
 
                     <div class="card fundraise-item">
-                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
-                                         alt="Image placeholder"></a>
+                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
+                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           alt="Image placeholder"></a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{project.percentage}}%"
+                                <div class="progress-bar bg-success" role="progressbar"
+                                     style="width: {{project.percentage}}%"
                                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="fund-raised d-block">$ {{ project.total_donations }} raised of ${{project.total_target}}</span>
@@ -95,7 +97,8 @@
 
             <div class="col-md-6 col-lg-3 mb-5">
                 <div class="person-donate text-center pt-4">
-                    <p><a href= "{% url 'get_category_projects' category.id %}" class="btn btn-success btn-hover-white py-3 px-5"> {{category.category}} </a></p>
+                    <p><a href="{% url 'get_category_projects' category.id %}"
+                          class="btn btn-success btn-hover-white py-3 px-5"> {{category.category}} </a></p>
                 </div>
             </div>
 
@@ -125,15 +128,21 @@
 
 
                     <div class="card fundraise-item">
-                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
-                                         alt="Image placeholder"></a>
+                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
+                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           alt="Image placeholder"></a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
+                            <hr>
+                            <span class="icon-star" style="color: #ffc107 !important; float:right"> {{project.ratings.get.average}} </span>
+                            <br>
+
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{project.percentage}}%"
+                                <div class="progress-bar bg-success" role="progressbar"
+                                     style="width: {{project.percentage}}%"
                                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="fund-raised d-block"> <b> $ {{ project.total_donations }} </b> raised of $ {{project.total_target}}</span>
@@ -168,15 +177,17 @@
 
 
                     <div class="card fundraise-item">
-                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top" src="{% static 'images/img_2.jpg' %}"
-                                         alt="Image placeholder"></a>
+                        <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
+                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           alt="Image placeholder"></a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{project.percentage}}%"
+                                <div class="progress-bar bg-success" role="progressbar"
+                                     style="width: {{project.percentage}}%"
                                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="fund-raised d-block"> <b> $ {{ project.total_donations }} </b> raised of $ {{project.total_target}}</span>

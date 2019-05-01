@@ -98,7 +98,7 @@ class ProjectTagsForm(forms.ModelForm):
 
 
 class MakeDonationForm(forms.ModelForm):
-    donation_amount = forms.IntegerField(required=True)
+    donation_amount = forms.IntegerField(required=True, min_value=1)
 
     class Meta:
         model = ProjectDonations
