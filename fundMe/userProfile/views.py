@@ -332,10 +332,13 @@ def get_projects(request, username):
     user = User.objects.get(username=username)
     userprofile = UserProfile.objects.get(user=user)
     projects = userprofile.project_set.all()
+    donations = userprofile.projectdonations_set.all()
     projectDetails = []
     for project in projects:
         projectDetails.append(add_project_details(project))
-    return render(request, 'userProfile/projects.html', {'projects': projectDetails})
+    return render(request, 'userProfile/projects.html', {'projects': projectDetails,
+                                                         'donations': donations,
+                                                         })
 
 
 def add_project_details(project):

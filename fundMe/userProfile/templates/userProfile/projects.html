@@ -41,7 +41,6 @@
 <!--Your Projects-->
 
 {% block featured_projects %}
-{{current_user}}
 <div class="site-section fund-raisers">
     <div class="container">
         <div class="row mb-5">
@@ -55,9 +54,15 @@
                 <div class="nonloop-block-11 owl-carousel">
                     {% for project in projects %}
                     <div class="card fundraise-item">
+
+                        {% for picture in project.projectpics_set.all %}
+                        {% if forloop.counter == 1 %}
+
                         <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
-                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           src="{{picture.project_picture.url}}"
                                                                            alt="Image placeholder"></a>
+                        {% endif %}
+                        {% endfor %}
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
@@ -73,6 +78,8 @@
                         </div>
                     </div>
 
+                    {% empty %}
+                    You didn't create any projects yet.
 
                     {% endfor %}
                 </div>
@@ -80,4 +87,20 @@
         </div>
     </div>
 </div> <!-- Latest Projects -->
+{% endblock %}
+
+
+{% block donations %}
+
+{% for d in donations %}
+
+<h1><a href="{% url 'show_project' d.project.id %}">{{d.project.title}} </a></h1>
+Donation amount : {{ d.donation_amount}}
+
+
+{% empty %}
+You don't have any donations yet.
+{% endfor %}
+
+
 {% endblock %}

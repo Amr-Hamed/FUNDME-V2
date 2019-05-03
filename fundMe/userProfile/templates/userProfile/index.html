@@ -54,12 +54,22 @@
                     {% for project in featured_projects %}
 
                     <div class="card fundraise-item">
+
+                        {% for picture in project.projectpics_set.all %}
+                        {% if forloop.counter == 1 %}
+
                         <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
-                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           src="{{picture.project_picture.url}}"
                                                                            alt="Image placeholder"></a>
+                        {% endif %}
+                        {% endfor %}
+
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
+                            <hr>
+                            <span class="icon-star" style="color: #ffc107 !important; float:right"> {{project.ratings.get.average}} </span>
+                            <br>
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
@@ -70,7 +80,8 @@
                             <span class="fund-raised d-block">$ {{ project.total_donations }} raised of ${{project.total_target}}</span>
                         </div>
                     </div>
-
+                    {% empty %}
+                    There is no featured projects yet.
                     {% endfor %}
                 </div>
             </div>
@@ -102,6 +113,8 @@
                 </div>
             </div>
 
+            {% empty %}
+            There is no categories yet.
 
             {% endfor %}
         </div>
@@ -128,9 +141,16 @@
 
 
                     <div class="card fundraise-item">
+
+                        {% for picture in project.projectpics_set.all %}
+                        {% if forloop.counter == 1 %}
+
                         <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
-                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           src="{{picture.project_picture.url}}"
                                                                            alt="Image placeholder"></a>
+                        {% endif %}
+                        {% endfor %}
+
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
@@ -148,6 +168,9 @@
                             <span class="fund-raised d-block"> <b> $ {{ project.total_donations }} </b> raised of $ {{project.total_target}}</span>
                         </div>
                     </div>
+
+                    {% empty %}
+                    There is no rated projects yet.
 
                     {% endfor %}
                 </div>
@@ -177,12 +200,20 @@
 
 
                     <div class="card fundraise-item">
+
+                        {% for picture in project.projectpics_set.all %}
+                        {% if forloop.counter == 1 %}
+
                         <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
-                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           src="{{picture.project_picture.url}}"
                                                                            alt="Image placeholder"></a>
+                        {% endif %}
+                        {% endfor %}
+
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
+
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
                             <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
@@ -194,6 +225,8 @@
                         </div>
                     </div>
 
+                    {% empty %}
+                    There is no projects yet.
                     {% endfor %}
                 </div>
             </div>

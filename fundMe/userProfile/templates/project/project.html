@@ -16,9 +16,9 @@
         <div class="block-30 block-30-sm item" style='background-image: url("{{picture.project_picture.url}}");'
              data-stellar-background-ratio="0.5">
 
-                {% endif %}
-                {% endfor %}
-               {% else %}
+            {% endif %}
+            {% endfor %}
+            {% else %}
             <div class="block-30 block-30-sm item" style="background-image: url('images/bg_2.jpg');"
                  data-stellar-background-ratio="0.5">
                 {% endif %}
@@ -35,10 +35,17 @@
                                      style="width: {{project.percentage}}%"
                                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
+
+
                             <span class="fund-raised d-block mb-5" style="color:#ffc107 !important">$ {{project.total_donations}} raised of $ {{project.total_target}}</span>
+
+
+                            {% if not project.user == user.userprofile %}
                             <p><a href="#actions" class="btn btn-primary btn-hover-white py-3 px-5">Donate
                                 Now</a></p>
+                            {% endif %}
 
+                            {% ratings project1 %}
 
                         </div>
 
@@ -55,13 +62,18 @@
     <div id="blog" class="site-section">
         <div class="container">
 
+
             <div class="row">
-
                 <div class="col-md-8">
+                    <div class="block-31 mb-5" style="position: relative;">
 
-                    <p class="mb-4"><img src="{% static 'images/bg_1.jpg' %} " alt="" class="img-fluid"></p>
-                    <img src="{% static 'images/image_10.jpg' %}" alt="" class="img-fluid">
-                    </p>
+                        <div class="owl-carousel loop-block-31">
+                            {% for picture in project.projectpics_set.all %}
+                            <div class="block-30 no-overlay item img-fluid"
+                                 style='background-image: url({{picture.project_picture.url}});'></div>
+                            {% endfor %}
+                        </div>
+                    </div>
 
                     <!--project date section-->
                     <div class="block-23">
@@ -78,7 +90,6 @@
 
                     <div class="block-23">
                         <h3><b>Project Details </b></h3>
-
 
                         <p>{{project.details}}</p>
                     </div>
@@ -107,6 +118,7 @@
                             </div>
 
                             <div class="row">
+                                {% if not project.user == user.userprofile %}
 
                                 <!--Donations Section-->
                                 <div class="col-md-6" id="donate">
@@ -145,6 +157,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
 
                                 <!--Rating Section-->
                                 <div class="col-md-6">
@@ -172,7 +185,6 @@
                             </div>
                         </div>
                     </div> <!-- .section -->
-
                     <!--Comment Section-->
                     <div class="pt-5 mt-5">
                         <h3 class="mb-5">Comments</h3>
@@ -241,6 +253,8 @@
                         <h3 class="text-center">{{project.user.firstname }} {{ project.user.lastname }} </h3>
                     </div>
 
+                    {% if not project.user == user.userprofile %}
+
                     <!--Reports Section-->
                     <div class="sidebar-box">
                         <div class="person-donate text-center bg-light pt-4">
@@ -262,88 +276,11 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
 
 
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div class="container">
-        <div class="jumbotron">
-            <h1> {{project.title}} </h1> <br>
-            Category : {{project.category}} <br>
-            Owner: {{ project.user }} <br>
-            start_date: {{project.start_date}} <br>
-            end_date: {{project.end_date}} <br>
-            total_target: {{project.total_target}} <br>
-            Description : {{project.details}} <br>
-            Total donations : {{project.total_donations}} <br>
-            Average_rating : {{project.average_rating}} <br>
-            {% if project.projecttags_set.all %}
-            tags: {% for tag in project.projecttags_set.all %}
-            pic {{tag.project_tag}}
-            {% endfor %}<br> <br>
-            {% endif %}
-
-            {{ project.projectpics. }}
-
-
-            {% if project.projectpics_set.all is not None %}
-            pictures:
-            {% for picture in project.projectpics_set.all %}
-            {% if forloop.counter == 1 %}
-
-            {{ picture.project_picture.url }}
-            <img src="{{picture.project_picture.url}}"/>
-
-            {% endif %}
-
-            {% endfor %}
-            {% endif %}
-        </div>
-
-
-    </div>
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <script>
-
-
-
-    function donate(){
-            swal("Insert the amount you want to donate:", {
-          content: "input",
-           timer: 5000,
-        })
-        .then((value) => {
-        if (value==null)
-            swal(`You donated nothing JOHN SNOW..`);
-        else
-            swal(`You donated: ${value} $`);
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
     {% endblock %}

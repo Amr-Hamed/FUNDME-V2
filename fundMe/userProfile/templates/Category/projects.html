@@ -41,23 +41,31 @@
 <!--Your Projects-->
 
 {% block featured_projects %}
-{{current_user}}
+
 <div class="site-section fund-raisers">
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-12">
-                <h2><b> Your projects </b></h2>
+                <h2><b> {{category}} projects </b></h2>
             </div>
         </div>
         <div class="row">
 
             <div class="col-md-12 block-11">
                 <div class="nonloop-block-11 owl-carousel">
+
                     {% for project in projects %}
                     <div class="card fundraise-item">
+
+                        {% for picture in project.projectpics_set.all %}
+                        {% if forloop.counter == 1 %}
+
                         <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
-                                                                           src="{% static 'images/img_2.jpg' %}"
+                                                                           src="{{picture.project_picture.url}}"
                                                                            alt="Image placeholder"></a>
+                        {% endif %}
+                        {% endfor %}
+
                         <div class="card-body">
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
@@ -72,8 +80,11 @@
                         </div>
                     </div>
 
-
+                    {% empty %}
+                    There is no projects  in this category yet.
                     {% endfor %}
+
+
                 </div>
             </div>
         </div>
