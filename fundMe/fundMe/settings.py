@@ -134,3 +134,5 @@ EMAIL_PORT = 587
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/userProfile/user_login/'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'

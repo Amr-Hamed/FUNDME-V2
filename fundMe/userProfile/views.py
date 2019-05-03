@@ -95,8 +95,9 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
+        username =User.objects.get(email=email)
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
@@ -106,7 +107,7 @@ def user_login(request):
                 return HttpResponse("Your account was inactive.")
         else:
             print("Someone tried to login and failed.")
-            print("They used username: {} and password: {}".format(username, password))
+            print("They used email: {} and password: {}".format(email, password))
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'userProfile/login.html', {})
@@ -442,3 +443,22 @@ class ProjectDetail(Project):
         self.total_donations = 0 if total_donations['donation_amount__sum'] is None else float(total_donations['donation_amount__sum'])
         self.average_rating = average_rating['user_rating__avg']
         self.percentage = "{0:.2f}".format((self.total_donations/total_target)*100)
+
+
+def delete_user_project(request, id):
+    project = get_object_or_404(Project, pk=id)
+    project_details = add_project_details(project)
+    current_user = User.objects.get(id=request.user.id)
+    current_user_profile = UserProfile.objects.filter(user=current_user)
+    donation = ProjectDonations.objects.filter(project=project).aggregate(Sum("donation_amount"))
+    print("They used totaldonations: {} ".format(donation['donation_amount__sum']))
+    if donation['donation_amount__sum'] == None:
+        project.delete()
+        return HttpResponseRedirect(reverse('index'))
+    else:
+      if float(donation['donation_amount__sum']) < .25*project.total_target:
+          project.delete()
+          return HttpResponseRedirect(reverse('index'))
+      else:
+          print("They used totaldonations: {} ".format( donation['donation_amount__sum']))
+          return HttpResponse('sorry your donations not less than 25% of total target')
