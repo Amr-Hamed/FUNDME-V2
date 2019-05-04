@@ -91,23 +91,30 @@ def register(request):
                   {'user_form': user_form,
                    'profile_form': profile_form,
                    'registered': registered})
-
-
+ 
 def user_login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        username =User.objects.get(email=email)
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('index'))
-            else:
-                return HttpResponse("Your account was inactive.")
-        else:
+        try:
+            username = User.objects.get(email=email)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            username = None
 
-            return render(request, 'userProfile/invalid_login.html', {})
+        if username is not None:
+           user = authenticate(username=username, password=password)
+           if user:
+              if user.is_active:
+                 login(request, user)
+                 return HttpResponseRedirect(reverse('index'))
+              else:
+                 return HttpResponse("Your account was inactive.")
+           else:
+               return HttpResponse("Your invalid email or password.")
+        else:
+            print("Someone tried to login and failed.")
+            print("They used email: {} and password: {}".format(email, password))
+            return HttpResponse("Invalid login details given")
     else:
         return render(request, 'userProfile/login.html', {})
 
