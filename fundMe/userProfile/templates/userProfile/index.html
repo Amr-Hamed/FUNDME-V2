@@ -53,9 +53,10 @@
                 <div class="nonloop-block-11 owl-carousel">
                     {% for project in featured_projects %}
 
+
                     <div class="card fundraise-item">
 
-                        {% for picture in project.projectpics_set.all %}
+                        {% for picture in project.project.projectpics_set.all %}
                         {% if forloop.counter == 1 %}
 
                         <a href="{% url 'show_project' project.id %}"><img class="card-img-top"
@@ -65,19 +66,14 @@
                         {% endfor %}
 
                         <div class="card-body">
-                            <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
+                            <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.project.title}}</a>
                             </h3>
                             <hr>
-                            <span class="icon-star" style="color: #ffc107 !important; float:right"> {{project.ratings.get.average}} </span>
+                            <span class="icon-star" style="color: #ffc107 !important; float:right"> {{project.project.ratings.get.average}} </span>
                             <br>
-                            <p class="card-text">{{project.details | truncatewords:10}}</p>
-                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-                            <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar"
-                                     style="width: {{project.percentage}}%"
-                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <span class="fund-raised d-block">$ {{ project.total_donations }} raised of ${{project.total_target}}</span>
+                            <p class="card-text">{{project.project.details | truncatewords:10}}</p>
+
+                            <span class="fund-raised d-block">Target ${{project.project.total_target}}</span>
                         </div>
                     </div>
                     {% empty %}
@@ -159,13 +155,8 @@
                             <br>
 
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
-                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-                            <div class="progress custom-progress-success">
-                                <div class="progress-bar bg-success" role="progressbar"
-                                     style="width: {{project.percentage}}%"
-                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <span class="fund-raised d-block"> <b> $ {{ project.total_donations }} </b> raised of $ {{project.total_target}}</span>
+
+                            <span class="fund-raised d-block"> <b> Target </b>$ {{project.total_target}}</span>
                         </div>
                     </div>
 
@@ -215,7 +206,6 @@
                             </h3>
 
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
-                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
                                 <div class="progress-bar bg-success" role="progressbar"
                                      style="width: {{project.percentage}}%"

@@ -67,7 +67,6 @@
                             <h3 class="card-title"><a href="{% url 'show_project' project.id %}">{{project.title}}</a>
                             </h3>
                             <p class="card-text">{{project.details | truncatewords:10}}</p>
-                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
                             <div class="progress custom-progress-success">
                                 <div class="progress-bar bg-success" role="progressbar"
                                      style="width: {{project.percentage}}%"
@@ -92,15 +91,40 @@
 
 {% block donations %}
 
-{% for d in donations %}
 
-<h1><a href="{% url 'show_project' d.project.id %}">{{d.project.title}} </a></h1>
-Donation amount : {{ d.donation_amount}}
+<div class="site-section fund-raisers">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 ">
+                <h2><b> Your Donations </b></h2>
+            </div>
+        </div>
 
+        <div class="row">
 
-{% empty %}
-You don't have any donations yet.
-{% endfor %}
+            {% for d in donations %}
+
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="person-donate text-center bg-light pt-4">
+
+                    <div class="donate-info">
+                        <h2><a href="{% url 'show_project' d.project.id %}">{{d.project.title}} </a></h2>
+                        <br>
+                        <div class="donate-amount d-flex">
+                            <div class="label">Donated</div>
+                            <div class="amount">$ {{ d.donation_amount}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            You don't have any donations yet.
+            {% endfor %}
+
+        </div>
+    </div>
+</div> <!-- .section -->
 
 
 {% endblock %}

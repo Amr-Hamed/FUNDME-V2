@@ -80,7 +80,7 @@ def register(request):
              #registered = True
             user.is_active = False
             user.save()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, 'userProfile/mail_confirmation.html', {})
 
         else:
             print(user_form.errors, profile_form.errors)
@@ -106,9 +106,8 @@ def user_login(request):
             else:
                 return HttpResponse("Your account was inactive.")
         else:
-            print("Someone tried to login and failed.")
-            print("They used email: {} and password: {}".format(email, password))
-            return HttpResponse("Invalid login details given")
+
+            return render(request, 'userProfile/invalid_login.html', {})
     else:
         return render(request, 'userProfile/login.html', {})
 
@@ -464,4 +463,4 @@ def delete_user_project(request, id):
           return HttpResponseRedirect(reverse('index'))
       else:
           print("They used totaldonations: {} ".format( donation['donation_amount__sum']))
-          return HttpResponse('sorry your donations not less than 25% of total target')
+          return render(request, 'userProfile/delete_project_err.html')
