@@ -108,13 +108,13 @@ def user_login(request):
                  login(request, user)
                  return HttpResponseRedirect(reverse('index'))
               else:
-                 return HttpResponse("Your account was inactive.")
+                 return render(request, 'userProfile/invalid_login.html', {})
            else:
-               return HttpResponse("Your invalid email or password.")
+               return render(request, 'userProfile/invalid_login.html', {})
         else:
             print("Someone tried to login and failed.")
             print("They used email: {} and password: {}".format(email, password))
-            return HttpResponse("Invalid login details given")
+            return render(request, 'userProfile/invalid_login.html', {})
     else:
         return render(request, 'userProfile/login.html', {})
 
